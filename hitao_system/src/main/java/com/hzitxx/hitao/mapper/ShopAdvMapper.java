@@ -4,7 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.hzitxx.hitao.entity.ShopAdv;
-
+/**
+ * 广告表
+ * @author WE1
+ *
+ */
 public interface ShopAdvMapper {
 	/**
 	 * 查询广告
