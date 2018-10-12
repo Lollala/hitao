@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.hitao.mapper.ShopexpressMapper">
+	<!-- 真的删除 -->
+	<delete id="deleteShopExpress">
+		DELETE from shop_express WHERE id=#{id}
+	</delete>
+	<!-- 更新某个快递公司 -->
+	<update id="updateShopExpress">
+		UPDATE shop_express
+		<set>
+			<if test="eName!=null and eName!=''">
+				e_name=#{eName},e_state=#{eState},
+				e_code=#{eCode},e_letter=#{eLetter},e_order=#{eOrder}
+			</if>
+			<if test="isDel!=null and isDel!=''">
+				is_del=#{isDel} <!-- 逻辑删除 -->
+			</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	<!-- 增加一个快递公司 -->
+	<insert id="addShopexpress" parameterType="com.hzitxx.hitao.entity.ShopExpress">
+		INSERT into
+		shop_express
+		(e_name,e_state,e_code,e_letter,e_order,e_url,is_del)
+		VALUES (#{eName},#{eState},#{eCode},#{eLetter},#{eOrder}
+		,#{eUrl},#{isDel})
+	</insert>
+	<!-- 查询所有快递公司 -->
+	<select id="selectShopexpress" resultMap="shopexpressMap">
+		SELECT
+		<include refid="shopsql"></include>
+		from shop_express
+	</select>
+	<resultMap id="shopexpressMap" type="com.hzitxx.hitao.entity.ShopExpress">
+		<id column="id" property="id"></id>
+		<result column="e_name" property="eName"></result>
+		<result column="e_state" property="eState"></result>
+		<result column="e_code" property="eCode"></result>
+		<result column="e_letter" property="eLetter"></result>
+		<result column="e_order" property="eOrder"></result>
+		<result column="e_url" property="eUrl"></result>
+		<result column="is_del" property="isDel"></result>
+	</resultMap>
+	<sql id="shopsql">
+		id,e_name,e_state,e_code,e_letter,e_order,e_url,is_del
+	</sql>
+</mapper>
