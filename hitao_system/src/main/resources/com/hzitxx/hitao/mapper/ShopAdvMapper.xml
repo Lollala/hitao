@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.hitao.mapper.ShopAdvMapper">
+	<!-- 查找所有广告信息 -->
+	<select id="findAllShopAdv" parameterType="map" resultMap="shopAdvMap">
+		select adv_id,
+		<include refid="all" />
+		from shop_adv 
+		<where>
+		<if test="advTitle!=null and advTitle!=''">
+		adv_title like concat(#{advTitle},'%')
+		</if>
+		</where>
+	</select>
+	<!-- 添加广告信息 -->
+	<insert id="addShopAdv"
+		parameterType="com.hzitxx.hitao.entity.ShopAdv">
+		insert into shop_adv(
+		<include refid="all"></include>
+		)
+		values(#{apId},#{advTitle},#{advContent},#{advStartDate},#{advEndDate},#{slideSort},#{memberId},
+		#{memberName},#{clickNum},#{isAllow},#{buyStyle},#{goldpay})
+	</insert>
+	<!-- 修改广告信息 -->
+	<update id="updateShopAdv"
+		parameterType="com.hzitxx.hitao.entity.ShopAdv">
+		update shop_adv
+		<set>
+			<if test="apId!='' and apId!=null">ap_id=#{apId},</if>
+			<if test="advTitle!='' and advTitle!=null">adv_title=#{advTitle},</if>
+			<if test="advContent!='' and advContent!=null">adv_content=#{advContent},</if>
+			<if test="advStartDate!='' and advStartDate!=null">adv_start_date=#{advStartDate},</if>
+			<if test="advEndDate!='' and advEndDate!=null">adv_end_date=#{advEndDate},</if>
+			<if test="slideSort!='' and slideSort!=null">slide_sort=#{slideSort},</if>
+			<if test="memberId!='' and memberId!=null">member_id=#{memberId},</if>
+			<if test="memberName!='' and memberName!=null">member_name=#{memberName},</if>
+			<if test="clickNum!='' and clickNum!=null">click_num=#{clickNum},</if>
+			<if test="isAllow!='' and isAllow!=null">is_allow=#{isAllow},</if>
+			<if test="buyStyle!='' and buyStyle!=null">buy_style=#{buyStyle},</if>
+			<if test="goldpay!='' and goldpay!=null">goldpay=#{goldpay},</if>
+		</set>
+		where adv_id=#{advId}
+	</update>
+	<!-- 物理删除广告信息 -->
+	<delete id="deleteShopAdv" parameterType="Integer">
+	delete from shop_adv where adv_id=#{advId}
+	</delete>
+
+		<sql id="all">
+			ap_id,adv_title,adv_content,adv_start_date,adv_end_date,slide_sort,member_id,member_name,click_num,is_allow,buy_style,goldpay
+		</sql>
+
+		<resultMap type="com.hzitxx.hitao.entity.ShopAdv"
+			id="shopAdvMap">
+			<id column="adv_id" property="advId" />
+			<result column="ap_id" property="apId" />
+			<result column="adv_title" property="advTitle" />
+			<result column="adv_content" property="advContent" />
+			<result column="adv_start_date" property="advStartDate" />
+			<result column="adv_end_date" property="advEndDate" />
+			<result column="slide_sort" property="slideSort" />
+			<result column="member_id" property="memberId" />
+			<result column="member_name" property="memberName" />
+			<result column="click_num" property="clickNum" />
+			<result column="is_allow" property="isAllow" />
+			<result column="buy_style" property="buyStyle" />
+			<result column="goldpay" property="goldpay" />
+		</resultMap>
+</mapper>
