@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.hitao.mapper.ShopArticleMapper">
+
+<!-- 查询文章 -->
+<select id="findShopArticle" parameterType="map" resultMap="shopArticleMap">
+select article_id,<include refid="all"/> from shop_article
+<where>
+<if test="articleTitle!=null and articleTitle!=''">
+article_title  like concat(#{articleTitle},'%')
+</if>
+</where>
+</select>
+
+<!-- 增加文章信息 -->
+<insert id="addShopArticle" parameterType="com.hzitxx.hitao.entity.ShopArticle">
+insert into shop_article(<include refid="all"/>) values(
+#{articleTitle},#{articleClassId},#{articleOrigin},#{articleOriginAddress},#{articleAuthor},
+#{articleAbstract},#{articleContent},#{articleImage},#{articleKeyword},#{articleLink},
+#{articleGoods},#{articleStartTime},#{articleEndTime},#{articlePublishTime},#{articleClick},
+#{articleSort},#{articleCommendFlag},#{articleCommentFlag},#{articleVerifyAdmin},#{articleVerifyTime},
+#{articleState},#{articlePublisherName},#{articlePublisherId},#{articleAttachmentPath},#{articleImageAll},
+#{articleModifyTime},#{articleTag},#{articleCommentCount},#{articleCommendImageFlag},#{articleShareCount},
+#{articleVerifyReason})
+</insert>
+
+<!-- 修改文章信息 -->
+<update id="updateShopArticle" parameterType="com.hzitxx.hitao.entity.ShopArticle">
+update shop_article set
+article_title=#{articleTitle},article_class_id=#{articleClassId},article_origin=#{articleOrigin},article_origin_address=#{articleOriginAddress},
+article_author=#{articleAuthor},article_abstract=#{articleAbstract},article_content=#{articleContent},article_image=#{articleImage},article_keyword=#{articleKeyword},
+article_link=#{articleLink},article_goods=#{articleGoods},article_start_time=#{articleStartTime},article_end_time=#{articleEndTime},article_publish_time=#{articlePublishTime},
+article_click=#{articleClick},article_sort=#{articleSort},article_commend_flag=#{articleCommendFlag},article_comment_flag=#{articleCommentFlag},article_verify_admin=#{articleVerifyAdmin},
+article_verify_time=#{articleVerifyTime},article_state=#{articleState},article_publisher_name=#{articlePublisherName},article_publisher_id=#{articlePublisherId},
+article_attachment_path=#{articleAttachmentPath},article_image_all=#{articleImageAll},article_modify_time=#{articleModifyTime},article_tag=#{articleTag},article_comment_count=#{articleCommentCount},
+article_commend_image_flag=#{articleCommendImageFlag},article_share_count=#{articleShareCount},article_verify_reason=#{articleVerifyReason} where article_id=#{articleId}
+</update>
+
+<!-- 物理删除 -->
+<delete id="deleteShopArticle" parameterType="com.hzitxx.hitao.entity.ShopArticle">
+delete from shop_article where article_id=#{articleId}
+</delete>
+
+
+<sql id="all">
+article_title,article_class_id,article_origin,article_origin_address,
+article_author,article_abstract,article_content,article_image,article_keyword,
+article_link,article_goods,article_start_time,article_end_time,article_publish_time,
+article_click,article_sort,article_commend_flag,article_comment_flag,article_verify_admin,
+article_verify_time,article_state,article_publisher_name,article_publisher_id,
+article_attachment_path,article_image_all,article_modify_time,article_tag,article_comment_count,
+article_commend_image_flag,article_share_count,article_verify_reason
+</sql>
+
+<resultMap type="com.hzitxx.hitao.entity.ShopArticle" id="shopArticleMap">
+<id column="article_id" property="articleId"/>
+<result column="article_title" property="articleTitle"/>
+<result column="article_class_id" property="articleClassId"/>
+<result column="article_origin" property="articleOrigin"/>
+<result column="article_origin_address" property="articleOriginAddress"/>
+<result column="article_author" property="articleAuthor"/>
+<result column="article_abstract" property="articleAbstract"/>
+<result column="article_content" property="articleContent"/>
+<result column="article_image" property="articleImage"/>
+<result column="article_keyword" property="articleKeyword"/>
+<result column="article_link" property="articleLink"/>
+<result column="article_goods" property="articleGoods"/>
+<result column="article_start_time" property="articleStartTime"/>
+<result column="article_end_time" property="articleEndTime"/>
+<result column="article_publish_time" property="articlePublishTime"/>
+<result column="article_click" property="articleClick"/>
+<result column="article_sort" property="articleSort"/>
+<result column="article_commend_flag" property="articleCommendFlag"/>
+<result column="article_comment_flag" property="articleCommentFlag"/>
+<result column="article_verify_admin" property="articleVerifyAdmin"/>
+<result column="article_verify_time" property="articleVerifyTime"/>
+<result column="article_state" property="articleState"/>
+<result column="article_publisher_name" property="articlePublisherName"/>
+<result column="article_publisher_id" property="articlePublisherId"/>
+<result column="article_attachment_path" property="articleAttachmentPath"/>
+<result column="article_image_all" property="articleImageAll"/>
+<result column="article_modify_time" property="articleModifyTime"/>
+<result column="article_tag" property="articleTag"/>
+<result column="article_comment_count" property="articleCommentCount"/>
+<result column="article_commend_image_flag" property="articleCommendImageFlag"/>
+<result column="article_share_count" property="articleShareCount"/>
+<result column="article_verify_reason" property="articleVerifyReason"/>
+</resultMap>
+</mapper>
