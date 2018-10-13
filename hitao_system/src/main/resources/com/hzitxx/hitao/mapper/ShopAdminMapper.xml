@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.hitao.mapper.ShopAdminMapper">
+
+
+	<!-- 更新管理员信息 -->
+	<update id="updateShopAdmin" parameterType="com.hzitxx.hitao.entity.ShopAdmin">
+		UPDATE shop_admin
+		<set>
+			<if test="adminName!=null and adminName!=''">
+				admin_name=#{adminName},admin_password=#{adminPassword},
+				admin_login_num=#{adminLoginNum},login_ip=#{loginIp},login_status=#{loginStatus},
+				email=#{email},login_time=#{loginTime},action_list=#{actionList},
+				nav_list=#{navList},updated_by=#{updatedBy},updated_time=#{updatedTime},
+			</if>
+			<if test="isDel!=null">
+			is_del=#{isDel} <!-- 逻辑删除 -->
+			</if>
+		</set>
+		WHERE admin_id=#{adminId}
+	</update>
+	
+	
+	<!-- 真的删除 -->
+	<delete id="deleteShopAdmin" parameterType="int">
+		DELETE FROM shop_admin WHERE admin_id=#{adminId}
+	</delete>
+	
+	
+	<!-- 增加管理员信息 -->
+	<insert id="addShopAdmin">
+		INSERT INTO shop_admin
+		(admin_name,admin_password,admin_login_num,login_ip,login_status,
+		email,is_del,login_time,action_list,nav_list,created_by,created_time)
+		VALUES
+		(#{adminName},#{adminPassword},#{adminLoginNum},#{loginIp},#{loginStatus},
+		#{email},#{isDel},#{loginTime},#{actionList},#{navList},#{createdBy},#{createdTime})
+	</insert>
+	
+	
+	<!-- 查询一条数据 -->
+	<select id="findone" resultMap="samap" parameterType="int">
+		SELECT
+		<include refid="basesql"></include>
+		from shop_admin WHERE admin_id=#{adminId}
+	</select>
+	
+	
+	<!-- 查询所有管理员信息 -->
+	<select id="selectShopAdmin" resultMap="samap">
+		SELECT
+		<include refid="basesql"></include>
+		from shop_admin
+	</select>
+	<resultMap id="samap" type="com.hzitxx.hitao.entity.ShopAdmin">
+		<id column="admin_id" property="adminId"></id>
+		<result column="admin_name" property="adminName"></result>
+		<result column="admin_password" property="adminPassword"></result>
+		<result column="admin_login_num" property="adminLoginNum"></result>
+		<result column="login_ip" property="loginIp"></result>
+		<result column="login_status" property="loginStatus"></result>
+		<result column="email" property="email"></result>
+		<result column="is_del" property="isDel"></result>
+		<result column="login_time" property="loginTime"></result>
+		<result column="action_list" property="actionList"></result>
+		<result column="nav_list" property="navList"></result>
+		<result column="created_by" property="createdBy"></result>
+		<result column="created_time" property="createdTime"></result>
+		<result column="updated_by" property="updatedBy" />
+		<result column="updated_time" property="updatedTime" />
+	</resultMap>
+	<sql id="basesql">
+		admin_id,admin_name,admin_password,admin_login_num,login_ip,login_status,email
+		,is_del,login_time,action_list,nav_list,created_by,created_time,updated_by,updated_time
+	</sql>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

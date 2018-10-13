@@ -34,5 +34,11 @@ public interface ShopexpressMapper {
 	 * @return
 	 */
 	int deleteShopExpress(Integer id);
+	/**
+	 * 查询一条
+	 * @param id
+	 * @return
+	 */
+	ShopExpress findone(Integer id);
 
 }

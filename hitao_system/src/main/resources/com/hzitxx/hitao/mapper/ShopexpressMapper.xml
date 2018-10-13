@@ -29,6 +29,12 @@
 		VALUES (#{eName},#{eState},#{eCode},#{eLetter},#{eOrder}
 		,#{eUrl},#{isDel})
 	</insert>
+	<!-- 查询一条数据 -->
+	<select id="findone" resultMap="shopexpressMap" parameterType="int">
+	     SELECT
+		<include refid="shopsql"></include>
+		from shop_express WHERE id=#{id}
+	</select>
 	<!-- 查询所有快递公司 -->
 	<select id="selectShopexpress" resultMap="shopexpressMap">
 		SELECT

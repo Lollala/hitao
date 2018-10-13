@@ -66,8 +66,13 @@ public class TestShopExpressMapper {
     */
    @Test
    public void testDel(){
-	   int id=4;
+	   int id=2;
 	   id=mapper.deleteShopExpress(id);
 	   System.out.println(id);
+   }
+   @Test
+   public void testFindone(){
+	   ShopExpress shopExpress = mapper.findone(2);
+	   System.out.println(shopExpress);
    }
 }

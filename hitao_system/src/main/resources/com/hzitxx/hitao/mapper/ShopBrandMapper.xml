@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.hitao.mapper.ShopBrandMapper">
+	<!-- 增加品牌 -->
+	<insert id="addShopBrand" parameterType="com.hzitxx.hitao.entity.ShopBrand">
+		INSERT into shop_brand
+		(brand_name,brand_class,class_id,brand_pic,brand_sort,
+		brand_recommend,brand_apply,is_del,created_time)
+		VALUES (#{brandName},#{brandClass},#{classId},#{brandPic},#{brandSort},
+		#{brandRecommend},#{brandApply},#{isDel},#{createdTime})
+	</insert>
+	<!-- 删除品牌 -->
+	<delete id="deleteShopBrand" parameterType="int">
+		delete from shop_brand where brand_id=#{brandId}
+	</delete>
+	<!-- 更新品牌信息 -->
+	<update id="updateShopBrand" parameterType="com.hzitxx.hitao.entity.ShopBrand">
+		UPDATE shop_brand
+		<set>
+			<if test="brandName!=null and brandName!=''">
+				brand_name=#{brandName},brand_class=#{brandClass},class_id=#{classId},
+				brand_pic=#{brandPic},brand_sort=#{brandSort},
+				brand_recommend=#{brandRecommend},brand_apply=#{brandApply}
+				,updated_time=#{updatedTime},
+			</if>
+			<if test="isDel!=null ">
+				is_del=#{isDel}
+			</if>
+		</set>
+		WHERE brand_id=#{brandId}
+	</update>
+	<!-- 查询一条 -->
+	<select id="findone" resultMap="shopbr"
+		parameterType="int">
+		select
+		<include refid="basesql"></include>
+		from shop_brand where brand_id=#{brandId}
+	</select>
+	<!-- 查询品牌信息 -->
+	<select id="selectShopBrand" resultMap="shopbr">
+
+		select
+		<include refid="basesql"></include>
+		from shop_brand
+	</select>
+	<resultMap type="com.hzitxx.hitao.entity.ShopBrand" id="shopbr">
+		<id column="brand_id" property="brandId" />
+		<result column="brand_name" property="brandName" />
+		<result column="brand_class" property="brandClass" />
+		<result column="class_id" property="classId" />
+		<result column="brand_pic" property="brandPic" />
+		<result column="brand_sort" property="brandSort" />
+		<result column="brand_recommend" property="brandRecommend" />
+		<result column="brand_apply" property="brandApply" />
+		<result column="is_del" property="isDel" />
+		<result column="created_time" property="createdTime" />
+		<result column="updated_time" property="updatedTime" />
+	</resultMap>
+	<sql id="basesql">
+		brand_id,brand_name,brand_class,class_id,brand_pic,brand_sort,brand_recommend
+		,brand_apply,is_del,created_time,updated_time
+	</sql>
+</mapper>
