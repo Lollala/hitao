@@ -49,18 +49,18 @@ public class ShopArticleServiceImpl implements ShopArticleService {
 	public ServerResponse<?> updateShopArticle(ShopArticle shopArticle) {
 		int result=this.shopArticleMapper.updateShopArticle(shopArticle);
 		if(result!=1) {
-			return ServerResponse.createByErrorMessage("添加失败！");
+			return ServerResponse.createByErrorMessage("修改失败！");
 		}
-		return ServerResponse.createBySuccessMessage("添加成功");
+		return ServerResponse.createBySuccessMessage("修改成功");
 	}
 
 	@Override
 	public ServerResponse<?> deleteShopArticle(Integer articleId) {
 		int result=this.shopArticleMapper.deleteShopArticle(articleId);
 		if(result!=1) {
-			return ServerResponse.createByErrorMessage("添加失败！");
+			return ServerResponse.createByErrorMessage("删除失败！");
 		}
-		return ServerResponse.createBySuccessMessage("添加成功 ！");
+		return ServerResponse.createBySuccessMessage("删除成功 ！");
 	}
 
 }
