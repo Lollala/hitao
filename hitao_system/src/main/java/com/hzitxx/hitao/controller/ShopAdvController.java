@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -48,7 +49,7 @@ public class ShopAdvController {
 	 */
 	@GetMapping("/addShopAdv")
 	@ResponseBody
-	public ServerResponse<?> addShopAdv(ShopAdv shopAdv) {
+	public ServerResponse<?> addShopAdv(@RequestBody ShopAdv shopAdv) {
 		return shopAdvService.addShopAdv(shopAdv);
 	}
 	/**
@@ -58,7 +59,7 @@ public class ShopAdvController {
 	 */
 	@GetMapping("/updateShopAdv")
 	@ResponseBody
-	public ServerResponse<?> updateShopAdv(ShopAdv shopAdv){
+	public ServerResponse<?> updateShopAdv(@RequestBody  ShopAdv shopAdv){
 		return shopAdvService.updateShopAdv(shopAdv);
 	}
 	/**

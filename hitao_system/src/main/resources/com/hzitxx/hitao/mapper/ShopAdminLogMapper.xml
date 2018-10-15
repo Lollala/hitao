@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.hitao.mapper.ShopAdminLogMapper">
+
+	<!-- 查找 -->
+	<select id="findShopAdminLog" parameterType="map"
+		resultMap="shopAdminLogMap">
+		select
+		<include refid="shopAdminLogBaseColumn" />
+		from shop_admin_log
+		<where>
+			<if test="content!='' and content!=null">
+				content like concat(#{content},'%')
+			</if>
+		</where>
+	</select>
+
+	<!-- 添加 -->
+	<insert id="addShopAdminLog"
+		parameterType="com.hzitxx.hitao.entity.ShopAdminLog">
+		insert into
+		shop_admin_log(content,createtime,admin_name,admin_id,ip,is_del,created_time)
+		values(#{content},#{createtime},#{adminName},#{adminId},#{ip},#{isDel},#{createdTime})
+	</insert>
+
+	<!-- 修改 -->
+	<update id="updateShopAdminLog"
+		parameterType="com.hzitxx.hitao.entity.ShopAdminLog">
+		update shop_admin_log set
+		content=#{content},admin_name=#{adminName},admin_id=#{adminId},ip=#{ip},is_del=#{isDel},updated_time=#{updatedTime}
+		WHERE log_id = #{logId}
+	</update>
+
+	<!-- 删除 -->
+	<delete id="deleteShopAdminLog" parameterType="Integer">
+		delete form shop_admin_log where log_id=logId
+	</delete>
+
+	<sql id="shopAdminLogBaseColumn">
+		log_id,content,createtime,admin_name,admin_id,ip,is_del,created_time,updated_time
+	</sql>
+
+
+	<resultMap id="shopAdminLogMap"
+		type="com.hzitxx.hitao.entity.ShopAdminLog">
+		<id column="log_id" property="logId" />
+		<result column="content" property="content" />
+		<result column="createtime" property="createtime" />
+		<result column="admin_name" property="adminName" />
+		<result column="admin_id" property="adminId" />
+		<result column="ip" property="ip" />
+		<result column="is_del" property="isDel" />
+		<result column="created_time" property="createdTime" />
+		<result column="updated_time" property="updatedTime" />
+	</resultMap>
+</mapper>

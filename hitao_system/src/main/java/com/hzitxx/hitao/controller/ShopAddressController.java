@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 /**
  * 买家地址信息表
@@ -47,7 +48,7 @@ public class ShopAddressController {
 	 */
 	@GetMapping("/addShopAddress")
 	@ResponseBody
-	public ServerResponse<?> addShopAddress(ShopAddress shopAddress){
+	public ServerResponse<?> addShopAddress(@RequestBody ShopAddress shopAddress){
 		return shopAddressService.addShopAddress(shopAddress);
 	}
 	/**
@@ -57,10 +58,14 @@ public class ShopAddressController {
 	 */
 	@GetMapping("/updateShopAddress")
 	@ResponseBody
-	public ServerResponse<?> updateShopAddress(ShopAddress shopAddress){
+	public ServerResponse<?> updateShopAddress(@RequestBody ShopAddress shopAddress){
 		return shopAddressService.updateShopAddress(shopAddress);
 	}
-	
+	/**
+	 * 删除买家地址信息
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/deleteShopAddress")
 	@ResponseBody
 	public ServerResponse<?> deleteShopAddress(Integer id){
