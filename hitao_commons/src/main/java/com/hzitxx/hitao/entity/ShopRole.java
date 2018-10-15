@@ -37,6 +37,10 @@ public class ShopRole implements Serializable {
      * 修改人
      */
     private Integer updatedBy;
+    /**
+     * 是否删除
+     */
+    private Integer isDel;
 
     public Integer getRoleId() {
         return roleId;
@@ -93,19 +97,21 @@ public class ShopRole implements Serializable {
     public void setUpdatedBy(Integer updatedBy) {
         this.updatedBy = updatedBy;
     }
- 
 
+	public Integer getIsDel() {
+		return isDel;
+	}
 
-    @Override
-    public String toString() {
-        return "ShopRole{" +
-        "roleId=" + roleId +
-        ", roleName=" + roleName +
-        ", roleDescription=" + roleDescription +
-        ", createdTime=" + createdTime +
-        ", createdBy=" + createdBy +
-        ", updatedTime=" + updatedTime +
-        ", updatedBy=" + updatedBy +
-        "}";
-    }
+	public void setIsDel(Integer isDel) {
+		this.isDel = isDel;
+	}
+
+	@Override
+	public String toString() {
+		return "ShopRole [roleId=" + roleId + ", roleName=" + roleName + ", roleDescription=" + roleDescription
+				+ ", createdTime=" + createdTime + ", createdBy=" + createdBy + ", updatedTime=" + updatedTime
+				+ ", updatedBy=" + updatedBy + ", isDel=" + isDel + "]";
+	}
+	
+	
 }

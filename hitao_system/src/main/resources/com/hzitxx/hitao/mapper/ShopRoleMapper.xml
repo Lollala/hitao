@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.hitao.mapper.ShopRoleMapper">
+	<!-- 查找 -->
+	<select id="findShopRole" parameterType="map"
+		resultMap="shopRoleMap">
+		select role_id,
+		<include refid="all" />
+		from shop_role
+		<where>
+			<if test="roleName!='' and roleName!=null">
+				role_name like concat(#{roleName},'%')
+			</if>
+		</where>
+	</select>
+
+	<!-- 增加 -->
+	<insert id="addShopRole"
+		parameterType="com.hzitxx.hitao.entity.ShopRole">
+		insert into shop_role(
+		role_name,role_description,created_time,created_by,is_del
+		)
+		values(#{roleName},#{roleDescription},#{createdTime},#{createdBy},#{isDel})
+	</insert>
+
+	<!-- 修改 -->
+	<update id="updateShopRole"
+		parameterType="com.hzitxx.hitao.entity.ShopRole">
+		update shop_role set
+		role_name=#{roleName},role_description=#{roleDescription},updated_time=#{updatedTime},updated_by=#{updatedBy},is_del=#{isDel}
+		where role_id=#{roleId}
+	</update>
+
+	<!-- 物理删除 -->
+	<delete id="deleteShopRole" parameterType="Integer">
+		delete from shop_role where role_id=#{roleId}
+	</delete>
+
+	<sql id="all">
+		role_name,role_description,created_time,created_by,updated_time,updated_by,is_del
+	</sql>
+
+	<resultMap type="com.hzitxx.hitao.entity.ShopRole"
+		id="shopRoleMap">
+		<id column="role_id" property="roleId" />
+		<result column="role_name" property="roleName" />
+		<result column="role_description" property="roleDescription" />
+		<result column="created_time" property="createdTime" />
+		<result column="created_by" property="createdBy" />
+		<result column="updated_time" property="updatedTime" />
+		<result column="updated_by" property="updatedBy" />
+		<result column="is_del" property="isDel" />
+	</resultMap>
+</mapper>
