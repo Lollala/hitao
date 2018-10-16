@@ -1,6 +1,7 @@
 package com.hzitxx.hitao.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hzitxx.hitao.entity.ShopPayment;
 
@@ -48,5 +49,5 @@ public interface ShopPaymentMapper {
 	 * 
 	 * @return
 	 */
-	List<ShopPayment> selectShopPayment();
+	List<ShopPayment> selectShopPayment(Map<String, Object> map);
 }

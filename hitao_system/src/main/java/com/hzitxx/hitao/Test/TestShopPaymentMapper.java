@@ -31,7 +31,7 @@ public class TestShopPaymentMapper {
 	 */
 	@Test
 	public void sel(){
-		List<ShopPayment> list = mapper.selectShopPayment();
+		List<ShopPayment> list = mapper.selectShopPayment(null);
 		System.out.println(list);
 	}
 	/**

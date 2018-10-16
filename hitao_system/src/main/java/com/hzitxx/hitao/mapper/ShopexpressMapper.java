@@ -1,6 +1,7 @@
 package com.hzitxx.hitao.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hzitxx.hitao.entity.ShopExpress;
 
@@ -14,7 +15,7 @@ public interface ShopexpressMapper {
 	 * 查询所有快递公司信息
 	 * @return
 	 */
-	List<ShopExpress> selectShopexpress();
+	List<ShopExpress> selectShopexpress(Map<String, Object> map);
 	
 	/**
 	 * 增加快递公司

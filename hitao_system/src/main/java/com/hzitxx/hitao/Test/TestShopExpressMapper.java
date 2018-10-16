@@ -24,7 +24,7 @@ public class TestShopExpressMapper {
    public void testSel(){
 	   //System.out.println(mapper);
 	   //org.apache.ibatis.binding.MapperProxy@3daf03d8
-	  List<ShopExpress> list = mapper.selectShopexpress();
+	  List<ShopExpress> list = mapper.selectShopexpress(null);
 	  System.out.println(list);
    }
    /**
