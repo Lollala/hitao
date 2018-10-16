@@ -1,6 +1,7 @@
 package com.hzitxx.hitao.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hzitxx.hitao.entity.ShopFavorites;
 
@@ -38,6 +39,6 @@ public interface ShopFavoritesMapper {
 	 * 查询所有收藏
 	 * @return
 	 */
-	List<ShopFavorites> selectShopFavorites();
+	List<ShopFavorites> selectShopFavorites(Map<String, Object> map);
 
 }

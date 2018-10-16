@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.hzitxx.hitao.mapper.ShopOrderMapper">
+  <!-- 添加订单 -->
+  <insert id="addShopOrder" parameterType="com.hzitxx.hitao.entity.ShopOrder">
+	INSERT INTO shop_order(
+	order_sn,
+	pay_sn,
+	buyer_id,
+	buyer_name,
+	buyer_email,
+	add_time,
+	payment_code,
+	payment_time,
+	finnshed_time,
+	goods_amount,
+	order_amount,
+	pd_amount,
+	shipping_fee,
+	evaluation_state,
+	order_state,
+	refund_state,
+	lock_state,
+	refund_amount,
+	delay_time,
+	shipping_code,
+	is_del,
+	created_time) 
+	VALUES(
+	#{orderSn},
+	#{paySn},
+	#{buyerId},
+	#{buyerName},
+	#{buyerEmail},
+	#{addTime},
+	#{paymentCode},
+	#{paymentTime},
+	#{finnshedTime},
+	#{goodsAmount},
+	#{orderAmount},
+	#{pdAmount},
+	#{shippingFee},
+	#{evaluationState},
+	#{orderState},
+	#{refundState},
+	#{lockState},
+	#{refundAmount},
+	#{delayTime},
+	#{shippingCode},
+	#{isDel},
+	#{createdTime}
+	)
+  </insert>
+  <!-- 删除订单 -->
+  <delete id="deleteShopOrder" parameterType="int">
+  DELETE FROM  shop_order WHERE
+        order_id = #{orderId}
+  </delete>
+  <!-- 查询所有订单 -->
+  <select id="selectShopOrder" resultMap="order">
+        SELECT
+        <include refid="basesql"/>
+        FROM shop_order
+  </select>
+  <!-- 查询一条订单 -->
+  <select id="findone" resultMap="order">
+        SELECT
+        <include refid="basesql"/>
+        FROM shop_order where order_id=#{orderId}
+  </select>
+  <!-- 更新订单 -->
+  <update id="updateShopOrder" parameterType="com.hzitxx.hitao.entity.ShopOrder">
+          UPDATE shop_order
+        <set>
+    <if test="orderId != null">
+          order_id = #{orderId},
+    </if>
+    <if test="orderSn != null">
+          order_sn = #{orderSn},
+    </if>
+    <if test="paySn != null">
+          pay_sn = #{paySn},
+    </if>
+    <if test="buyerId != null">
+          buyer_id = #{buyerId},
+    </if>
+    <if test="buyerName != null">
+          buyer_name = #{buyerName},
+    </if>
+    <if test="buyerEmail != null">
+          buyer_email = #{buyerEmail},
+    </if>
+    <if test="addTime != null">
+          add_time = #{addTime},
+    </if>
+    <if test="paymentCode != null">
+          payment_code = #{paymentCode},
+    </if>
+    <if test="paymentTime != null">
+          payment_time = #{paymentTime},
+    </if>
+    <if test="finnshedTime != null">
+          finnshed_time = #{finnshedTime},
+    </if>
+    <if test="goodsAmount != null">
+          goods_amount = #{goodsAmount},
+    </if>
+    <if test="orderAmount != null">
+          order_amount = #{orderAmount},
+    </if>
+    <if test="pdAmount != null">
+          pd_amount = #{pdAmount},
+    </if>
+    <if test="shippingFee != null">
+          shipping_fee = #{shippingFee},
+    </if>
+    <if test="evaluationState != null">
+          evaluation_state = #{evaluationState},
+    </if>
+    <if test="orderState != null">
+          order_state = #{orderState},
+    </if>
+    <if test="refundState != null">
+          refund_state = #{refundState},
+    </if>
+    <if test="lockState != null">
+          lock_state = #{lockState},
+    </if>
+    <if test="refundAmount != null">
+          refund_amount = #{refundAmount},
+    </if>
+    <if test="delayTime != null">
+          delay_time = #{delayTime},
+    </if>
+    <if test="shippingCode != null">
+          shipping_code = #{shippingCode},
+    </if>
+    <if test="isDel != null">
+          is_del = #{isDel},
+    </if>
+    <if test="createdTime != null">
+          created_time = #{createdTime},
+    </if>
+    <if test="updatedTime != null">
+          updated_time = #{updatedTime},
+    </if>
+    </set>
+        WHERE
+      order_id = #{orderId}
+  </update>
+  <resultMap type="com.hzitxx.hitao.entity.ShopOrder" id="order">
+            <id column="order_id" property="orderId"/>
+            <result column="order_sn" property="orderSn"/>
+            <result column="pay_sn" property="paySn"/>
+            <result column="buyer_id" property="buyerId"/>
+            <result column="buyer_name" property="buyerName"/>
+            <result column="buyer_email" property="buyerEmail"/>
+            <result column="add_time" property="addTime"/>
+            <result column="payment_code" property="paymentCode"/>
+            <result column="payment_time" property="paymentTime"/>
+            <result column="finnshed_time" property="finnshedTime"/>
+            <result column="goods_amount" property="goodsAmount"/>
+            <result column="order_amount" property="orderAmount"/>
+            <result column="pd_amount" property="pdAmount"/>
+            <result column="shipping_fee" property="shippingFee"/>
+            <result column="evaluation_state" property="evaluationState"/>
+            <result column="order_state" property="orderState"/>
+            <result column="refund_state" property="refundState"/>
+            <result column="lock_state" property="lockState"/>
+            <result column="refund_amount" property="refundAmount"/>
+            <result column="delay_time" property="delayTime"/>
+            <result column="shipping_code" property="shippingCode"/>
+            <result column="is_del" property="isDel"/>
+            <result column="created_time" property="createdTime"/>
+            <result column="updated_time" property="updatedTime"/>
+  </resultMap>
+  <sql id="basesql">
+	order_id,
+	order_sn,
+	pay_sn,
+	buyer_id,
+	buyer_name,
+	buyer_email,
+	add_time,
+	payment_code,
+	payment_time,
+	finnshed_time,
+	goods_amount,
+	order_amount,
+	pd_amount,
+	shipping_fee,
+	evaluation_state,
+	order_state,
+	refund_state,
+	lock_state,
+	refund_amount,
+	delay_time,
+	shipping_code,
+	is_del,
+	created_time,
+	updated_time
+  </sql>
+  </mapper>

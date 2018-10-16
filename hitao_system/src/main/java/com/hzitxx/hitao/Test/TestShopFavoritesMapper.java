@@ -41,7 +41,7 @@ public class TestShopFavoritesMapper {
 	 */
 	@Test
 	public void testSel() {
-		List<ShopFavorites> list = mapper.selectShopFavorites();
+		List<ShopFavorites> list = mapper.selectShopFavorites(null);
 		System.out.println(list);
 	}
 

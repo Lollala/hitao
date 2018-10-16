@@ -24,7 +24,7 @@ public class TestShopBrandMapper {
       */
 	@Test
 	public void testSel() {
-       List<ShopBrand> list = mapper.selectShopBrand();
+       List<ShopBrand> list = mapper.selectShopBrand(null);
        System.out.println(list);
 	}
 	/**

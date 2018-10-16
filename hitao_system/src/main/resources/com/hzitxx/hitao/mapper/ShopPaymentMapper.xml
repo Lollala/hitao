@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.hitao.mapper.ShopPaymentMapper">
+<!-- 添加 -->
+<insert id="addShopPayment" parameterType="com.hzitxx.hitao.entity.ShopPayment">
+	INSERT INTO shop_payment(
+	payment_code,
+	payment_name,
+	payment_config,
+	payment_state,
+	is_del,
+	created_time
+	) VALUES(
+	#{paymentCode},
+	#{paymentName},
+	#{paymentConfig},
+	#{paymentState},
+	#{isDel},
+	#{createdTime}
+	)
+    </insert>
+<!-- 修改 -->
+<update id="updateShopPayment" parameterType="com.hzitxx.hitao.entity.ShopPayment">
+        UPDATE shop_payment
+        <set>
+    <if test="paymentId != null">
+          payment_id = #{paymentId},
+    </if>
+    <if test="paymentCode != null">
+          payment_code = #{paymentCode},
+    </if>
+    <if test="paymentName != null">
+          payment_name = #{paymentName},
+    </if>
+    <if test="paymentConfig != null">
+          payment_config = #{paymentConfig},
+    </if>
+    <if test="paymentState != null">
+          payment_state = #{paymentState},
+    </if>
+    <if test="isDel != null">
+          is_del = #{isDel},
+    </if>
+    <if test="updatedTime != null">
+          updated_time = #{updatedTime},
+    </if>
+    </set>
+        WHERE
+      payment_id = #{paymentId}
+    </update>
+<!-- 删除 -->
+<delete id="deleteShopPayment" parameterType="integer">
+        DELETE FROM  shop_payment WHERE
+        payment_id = #{paymentId}
+    </delete>
+<!-- 查询所有结果 -->
+<select id="selectShopPayment" resultMap="pay">
+SELECT
+        <include refid="basesql"/>
+        FROM shop_payment
+</select>
+<!-- 查询一条数据 -->
+<select id="findone" resultMap="pay" parameterType="integer">
+       SELECT
+        <include refid="basesql"/>
+        FROM shop_payment where payment_id=#{paymentId}
+</select>
+<resultMap id="pay" type="com.hzitxx.hitao.entity.ShopPayment">
+<id column="payment_id" property="paymentId" />
+	<result column="payment_code" property="paymentCode" />
+	<result column="payment_name" property="paymentName" />
+	<result column="payment_config" property="paymentConfig" />
+	<result column="payment_state" property="paymentState" />
+	<result column="is_del" property="isDel" />
+	<result column="created_time" property="createdTime" />
+	<result column="updated_time" property="updatedTime" />
+</resultMap>
+<sql id="basesql">
+	payment_id,
+	payment_code,
+	payment_name,
+	payment_config,
+	payment_state,
+	is_del,
+	created_time,
+	updated_time
+</sql>
+</mapper>

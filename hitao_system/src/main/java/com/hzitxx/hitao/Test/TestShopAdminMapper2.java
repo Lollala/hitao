@@ -24,8 +24,8 @@ public class TestShopAdminMapper2 {
 	@Test
 	public void testUpdate(){
 		ShopAdmin shopAdmin = new ShopAdmin();
-		shopAdmin.setAdminId(15);
-		shopAdmin.setIsDel(2);
+		shopAdmin.setAdminId(20);
+		shopAdmin.setAdminName("jjjjj");
 		/*shopAdmin.setActionList("a");
 		shopAdmin.setAdminLoginNum(5);
 		shopAdmin.setAdminName("cc高德伟5号");
@@ -53,7 +53,7 @@ public class TestShopAdminMapper2 {
 	 */
 	@Test
 	public void testSel(){
-		List<ShopAdmin> list = mapper.selectShopAdmin();
+		List<ShopAdmin> list = mapper.selectShopAdmin(null);
 		System.out.println(list);
 	}
 	/**

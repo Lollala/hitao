@@ -1,6 +1,7 @@
 package com.hzitxx.hitao.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hzitxx.hitao.entity.ShopBrand;
 
@@ -40,7 +41,7 @@ public interface ShopBrandMapper {
 	 * 
 	 * @return
 	 */
-	List<ShopBrand> selectShopBrand();
+	List<ShopBrand> selectShopBrand(Map<String, Object> map);
 	/**
 	 * 根据id查询这条数据信息
 	 * @param brandId

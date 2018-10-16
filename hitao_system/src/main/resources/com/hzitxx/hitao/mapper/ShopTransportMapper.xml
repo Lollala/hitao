@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.hzitxx.hitao.mapper.ShopTransportMapper">
+  <!-- 添加运费 -->
+  <insert id="addShopTransport">
+	INSERT INTO shop_transport(
+	title,
+	send_tpl_id,
+	is_del,
+	created_time
+	) VALUES(
+	#{title},
+	#{sendTplId},
+	#{isDel},
+	#{createdTime}
+	)
+  </insert>
+  <!-- 修改运费 -->
+  <update id="updateTransport" parameterType="com.hzitxx.hitao.entity.ShopTransport">
+	UPDATE shop_transport
+	<set>
+		<if test="id != null">
+			id = #{id},
+		</if>
+		<if test="title != null">
+			title = #{title},
+		</if>
+		<if test="sendTplId != null">
+			send_tpl_id = #{sendTplId},
+		</if>
+		<if test="isDel != null">
+			is_del = #{isDel},
+		</if>
+		<if test="updatedTime != null">
+			updated_time = #{updatedTime},
+		</if>
+	</set>
+	WHERE
+	id = #{id}
+  </update>
+  <!-- 删除运费 -->
+  <delete id="deleteTransport" parameterType="integer">
+        DELETE FROM  shop_transport WHERE
+        id = #{id}
+    </delete>
+  <!-- 查询所有 -->
+  <select id="selectShopTransport" resultMap="tra">
+   SELECT
+        <include refid="basesql"/>
+        FROM shop_transport
+  </select>
+  <!-- 查询一条 -->
+  <select id="findone" resultMap="tra">
+  SELECT
+        <include refid="basesql"/>
+        FROM shop_transport where id=#{id}
+  </select>
+  <resultMap type="com.hzitxx.hitao.entity.ShopTransport" id="tra">
+            <id column="id" property="id"/>
+            <result column="title" property="title"/>
+            <result column="send_tpl_id" property="sendTplId"/>
+            <result column="is_del" property="isDel"/>
+            <result column="created_time" property="createdTime"/>
+            <result column="updated_time" property="updatedTime"/>
+  </resultMap>
+  <sql id="basesql">
+         id,
+         title,
+         send_tpl_id,
+         is_del,
+         created_time,
+         updated_time
+  </sql>
+  </mapper>

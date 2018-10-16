@@ -1,6 +1,7 @@
 package com.hzitxx.hitao.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hzitxx.hitao.entity.ShopAdmin;
 
@@ -40,7 +41,7 @@ public interface ShopAdminMapper {
 	 * 
 	 * @return
 	 */
-	List<ShopAdmin> selectShopAdmin();
+	List<ShopAdmin> selectShopAdmin(Map<String, Object> map);
 	/**
 	 * 查询一条数据
 	 * @param adminId

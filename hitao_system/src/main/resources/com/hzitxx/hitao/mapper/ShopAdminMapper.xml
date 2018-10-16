@@ -7,19 +7,50 @@
 
 	<!-- 更新管理员信息 -->
 	<update id="updateShopAdmin" parameterType="com.hzitxx.hitao.entity.ShopAdmin">
-		UPDATE shop_admin
-		<set>
-			<if test="adminName!=null and adminName!=''">
-				admin_name=#{adminName},admin_password=#{adminPassword},
-				admin_login_num=#{adminLoginNum},login_ip=#{loginIp},login_status=#{loginStatus},
-				email=#{email},login_time=#{loginTime},action_list=#{actionList},
-				nav_list=#{navList},updated_by=#{updatedBy},updated_time=#{updatedTime},
-			</if>
-			<if test="isDel!=null">
-			is_del=#{isDel} <!-- 逻辑删除 -->
-			</if>
-		</set>
-		WHERE admin_id=#{adminId}
+		 UPDATE shop_admin
+        <set>
+    <if test="adminId != null">
+          admin_id = #{adminId},
+    </if>
+    <if test="adminName != null">
+          admin_name = #{adminName},
+    </if>
+    <if test="adminPassword != null">
+          admin_password = #{adminPassword},
+    </if>
+    <if test="adminLoginNum != null">
+          admin_login_num = #{adminLoginNum},
+    </if>
+    <if test="loginIp != null">
+          login_ip = #{loginIp},
+    </if>
+    <if test="loginStatus != null">
+          login_status = #{loginStatus},
+    </if>
+    <if test="email != null">
+          email = #{email},
+    </if>
+    <if test="isDel != null">
+          is_del = #{isDel},
+    </if>
+    <if test="loginTime != null">
+          login_time = #{loginTime},
+    </if>
+    <if test="actionList != null">
+          action_list = #{actionList},
+    </if>
+    <if test="navList != null">
+          nav_list = #{navList},
+    </if>
+    <if test="updatedBy != null">
+          updated_by = #{updatedBy},
+    </if>
+    <if test="updatedTime != null">
+          updated_time = #{updatedTime},
+    </if>
+    </set>
+        WHERE
+      admin_id = #{adminId}
 	</update>
 	
 	
@@ -49,7 +80,7 @@
 	
 	
 	<!-- 查询所有管理员信息 -->
-	<select id="selectShopAdmin" resultMap="samap">
+	<select id="selectShopAdmin" resultMap="samap" parameterType="map">
 		SELECT
 		<include refid="basesql"></include>
 		from shop_admin
