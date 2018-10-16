@@ -17,7 +17,8 @@ import com.hzitxx.hitao.utils.LayuiEntity;
 import com.hzitxx.hitao.utils.ServerResponse;
 
 /**
- *  CMS文章表
+ * CMS文章表
+ * 
  * @author WE1
  *
  */
@@ -25,9 +26,11 @@ import com.hzitxx.hitao.utils.ServerResponse;
 public class ShopArticleController {
 	@Autowired
 	private ShopArticleService shopArticleService;
-	private Map<String,Object> map=new HashMap<>();
+	private Map<String, Object> map = new HashMap<>();
+
 	/**
 	 * 分页查询
+	 * 
 	 * @param page
 	 * @param limit
 	 * @param articleTitle
@@ -35,41 +38,45 @@ public class ShopArticleController {
 	 */
 	@GetMapping("/findShopArticle")
 	@ResponseBody
-	public ServerResponse<LayuiEntity<ShopArticle>> findShopArticle(@RequestParam("page")Integer page,
-			@RequestParam("limit")Integer limit,String articleTitle){
-		if(StringUtils.isEmpty(articleTitle)) {
-			map.put("articleTitle", articleTitle);
-		}
+	public ServerResponse<LayuiEntity<ShopArticle>> findShopArticle(@RequestParam("page") Integer page,
+			@RequestParam("limit") Integer limit, String articleTitle) {
+		map.put("articleTitle", articleTitle);
 		return shopArticleService.findShopArticle(page, limit, map);
 	}
+
 	/**
 	 * 添加文章信息
+	 * 
 	 * @param shopArticle
 	 * @return
 	 */
 	@GetMapping("/addShopArticle")
 	@ResponseBody
-	public ServerResponse<?> addShopArticle(@RequestBody ShopArticle shopArticle){
+	public ServerResponse<?> addShopArticle(@RequestBody ShopArticle shopArticle) {
 		return shopArticleService.addShopArticle(shopArticle);
 	}
+
 	/**
 	 * 修改文章信息
+	 * 
 	 * @param shopArticle
 	 * @return
 	 */
 	@GetMapping("/updateShopArticle")
 	@ResponseBody
-	public ServerResponse<?> updateShopArticle(@RequestBody ShopArticle shopArticle){
+	public ServerResponse<?> updateShopArticle(@RequestBody ShopArticle shopArticle) {
 		return shopArticleService.updateShopArticle(shopArticle);
 	}
+
 	/**
 	 * 物理删除文章信息
+	 * 
 	 * @param articleId
 	 * @return
 	 */
 	@GetMapping("/deleteShopArticle")
 	@ResponseBody
-	public ServerResponse<?> deleteShopArticle(Integer articleId){
+	public ServerResponse<?> deleteShopArticle(Integer articleId) {
 		return shopArticleService.deleteShopArticle(articleId);
 	}
 }

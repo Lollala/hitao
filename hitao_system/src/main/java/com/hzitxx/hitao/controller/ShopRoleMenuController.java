@@ -21,6 +21,7 @@ import com.hzitxx.hitao.utils.ServerResponse;
 
 /**
  * 角色菜单表
+ * 
  * @author WE1
  *
  */
@@ -28,48 +29,54 @@ import com.hzitxx.hitao.utils.ServerResponse;
 public class ShopRoleMenuController {
 	@Autowired
 	private ShopRoleMenuService shopRoleMenuService;
-	
-	private Map<String,Object> map=new HashMap<>();
+
+	private Map<String, Object> map = new HashMap<>();
+
 	/**
 	 * 分页查询
+	 * 
 	 * @param page
 	 * @param limit
 	 * @param roleId
 	 * @return
 	 */
 	@GetMapping("/findShopRoleMenu")
-	public ServerResponse<LayuiEntity<ShopRoleMenu>> findShopRoleMenu(@RequestParam("page")Integer page,
-			@RequestParam("limit")Integer limit,Integer roleId){
-		if(StringUtils.isEmpty(roleId)) {
-			map.put("roleName", roleId);
-		}
+	public ServerResponse<LayuiEntity<ShopRoleMenu>> findShopRoleMenu(@RequestParam("page") Integer page,
+			@RequestParam("limit") Integer limit, Integer roleId) {
+		map.put("roleName", roleId);
 		return shopRoleMenuService.findShopRoleMenu(page, limit, map);
 	}
+
 	/**
 	 * 添加角色菜单信息
+	 * 
 	 * @param shopRoleMenu
 	 * @return
 	 */
 	@PostMapping("/addShopRoleMenu")
-	public ServerResponse<?> addShopRoleMenu(@RequestBody ShopRoleMenu shopRoleMenu){
+	public ServerResponse<?> addShopRoleMenu(@RequestBody ShopRoleMenu shopRoleMenu) {
 		return shopRoleMenuService.addShopRoleMenu(shopRoleMenu);
 	}
+
 	/**
 	 * 根据id修改角色菜单信息写
+	 * 
 	 * @param shopRoleMenu
 	 * @return
 	 */
 	@PostMapping("/updateShopRoleMenu")
-	public ServerResponse<?> updateShopRoleMenu(@RequestBody ShopRoleMenu shopRoleMenu){
+	public ServerResponse<?> updateShopRoleMenu(@RequestBody ShopRoleMenu shopRoleMenu) {
 		return shopRoleMenuService.updateShopRoleMenu(shopRoleMenu);
 	}
+
 	/**
 	 * 根据id删除角色菜单信息写
+	 * 
 	 * @param id
 	 * @return
 	 */
 	@PostMapping("/deleteShopRoleMenu")
-	public ServerResponse<?> deleteShopRoleMenu(@RequestParam("id")Integer id){
+	public ServerResponse<?> deleteShopRoleMenu(@RequestParam("id") Integer id) {
 		return shopRoleMenuService.deleteShopRoleMenu(id);
 	}
 }

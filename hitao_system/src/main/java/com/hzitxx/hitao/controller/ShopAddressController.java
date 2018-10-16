@@ -20,13 +20,16 @@ import com.hzitxx.hitao.entity.ShopAddress;
 import com.hzitxx.hitao.service.ShopAddressService;
 import com.hzitxx.hitao.utils.LayuiEntity;
 import com.hzitxx.hitao.utils.ServerResponse;
+
 @Controller
 public class ShopAddressController {
 	@Autowired
 	private ShopAddressService shopAddressService;
-	private Map<String,Object> map=new HashMap<>();
+	private Map<String, Object> map = new HashMap<>();
+
 	/**
 	 * 分页查询
+	 * 
 	 * @param page
 	 * @param limit
 	 * @param memberName
@@ -34,41 +37,45 @@ public class ShopAddressController {
 	 */
 	@GetMapping("/findShopAddress")
 	@ResponseBody
-	public ServerResponse<LayuiEntity<ShopAddress>> findShopAddress(@RequestParam("page")Integer page,
-			@RequestParam("limit")Integer limit,String memberName){
-		if(StringUtils.isEmpty(memberName)) {
-			map.put("memberName", memberName);
-		}
+	public ServerResponse<LayuiEntity<ShopAddress>> findShopAddress(@RequestParam("page") Integer page,
+			@RequestParam("limit") Integer limit, String memberName) {
+		map.put("memberName", memberName);
 		return shopAddressService.findShopAddress(page, limit, map);
 	}
+
 	/**
 	 * 添加买家地址信息
+	 * 
 	 * @param shopAddress
 	 * @return
 	 */
 	@GetMapping("/addShopAddress")
 	@ResponseBody
-	public ServerResponse<?> addShopAddress(@RequestBody ShopAddress shopAddress){
+	public ServerResponse<?> addShopAddress(@RequestBody ShopAddress shopAddress) {
 		return shopAddressService.addShopAddress(shopAddress);
 	}
+
 	/**
 	 * 修改买家地址信息
+	 * 
 	 * @param shopAddress
 	 * @return
 	 */
 	@GetMapping("/updateShopAddress")
 	@ResponseBody
-	public ServerResponse<?> updateShopAddress(@RequestBody ShopAddress shopAddress){
+	public ServerResponse<?> updateShopAddress(@RequestBody ShopAddress shopAddress) {
 		return shopAddressService.updateShopAddress(shopAddress);
 	}
+
 	/**
 	 * 删除买家地址信息
+	 * 
 	 * @param id
 	 * @return
 	 */
 	@GetMapping("/deleteShopAddress")
 	@ResponseBody
-	public ServerResponse<?> deleteShopAddress(Integer id){
+	public ServerResponse<?> deleteShopAddress(Integer id) {
 		return shopAddressService.deleteShopAddress(id);
 	}
 }

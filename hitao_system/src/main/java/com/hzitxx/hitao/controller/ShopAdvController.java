@@ -15,8 +15,10 @@ import com.hzitxx.hitao.entity.ShopAdv;
 import com.hzitxx.hitao.service.ShopAdvService;
 import com.hzitxx.hitao.utils.LayuiEntity;
 import com.hzitxx.hitao.utils.ServerResponse;
+
 /**
  * 广告表
+ * 
  * @author WE1
  *
  */
@@ -36,14 +38,14 @@ public class ShopAdvController {
 	@GetMapping("/findShopAdv")
 	@ResponseBody
 	public ServerResponse<LayuiEntity<ShopAdv>> findShopAdv(@RequestParam("page") Integer page,
-			@RequestParam("limit") Integer limit,String advTitle) {
-		if (StringUtils.isEmpty(advTitle)) {//判断筛选条件是否存在
-			map.put("advTitle", advTitle);
-		}
+			@RequestParam("limit") Integer limit, String advTitle) {
+		map.put("advTitle", advTitle);
 		return shopAdvService.findAllShopAdv(page, limit, map);
 	}
+
 	/**
 	 * 添加广告信息
+	 * 
 	 * @param shopAdv
 	 * @return
 	 */
@@ -52,18 +54,22 @@ public class ShopAdvController {
 	public ServerResponse<?> addShopAdv(@RequestBody ShopAdv shopAdv) {
 		return shopAdvService.addShopAdv(shopAdv);
 	}
+
 	/**
 	 * 修改广告信息
+	 * 
 	 * @param shopAdv
 	 * @return
 	 */
 	@GetMapping("/updateShopAdv")
 	@ResponseBody
-	public ServerResponse<?> updateShopAdv(@RequestBody  ShopAdv shopAdv){
+	public ServerResponse<?> updateShopAdv(@RequestBody ShopAdv shopAdv) {
 		return shopAdvService.updateShopAdv(shopAdv);
 	}
+
 	/**
 	 * 物理删除广告信息
+	 * 
 	 * @param advId
 	 * @return
 	 */

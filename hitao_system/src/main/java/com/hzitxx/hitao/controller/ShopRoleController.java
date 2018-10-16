@@ -20,6 +20,7 @@ import com.hzitxx.hitao.utils.ServerResponse;
 
 /**
  * 平台后台角色表
+ * 
  * @author WE1
  *
  */
@@ -27,10 +28,12 @@ import com.hzitxx.hitao.utils.ServerResponse;
 public class ShopRoleController {
 	@Autowired
 	private ShopRoleService shopRoleService;
-	
-	private Map<String,Object> map=new HashMap<>();
+
+	private Map<String, Object> map = new HashMap<>();
+
 	/**
 	 * 分页查询
+	 * 
 	 * @param page
 	 * @param limit
 	 * @param roleName
@@ -38,43 +41,47 @@ public class ShopRoleController {
 	 */
 	@GetMapping("/findShopRole")
 	@ResponseBody
-	public ServerResponse<LayuiEntity<ShopRole>> findShopRole(@RequestParam("page")Integer page,
-			@RequestParam("limit")Integer limit,String roleName){
-		if(StringUtils.isEmpty(roleName)) {
-			map.put("roleName", roleName);
-		}
+	public ServerResponse<LayuiEntity<ShopRole>> findShopRole(@RequestParam("page") Integer page,
+			@RequestParam("limit") Integer limit, String roleName) {
+		map.put("roleName", roleName);
 		return shopRoleService.findShopRole(page, limit, map);
 	}
+
 	/**
 	 * 添加角色
+	 * 
 	 * @param shopRole
 	 * @return
 	 */
 	@PostMapping("/addShopRole")
 	@ResponseBody
-	public ServerResponse<?> addShopRole(@RequestBody ShopRole shopRole){
+	public ServerResponse<?> addShopRole(@RequestBody ShopRole shopRole) {
 		shopRole.setCreatedTime(new Date());
 		return shopRoleService.addShopRole(shopRole);
 	}
+
 	/**
 	 * 修改角色信息
+	 * 
 	 * @param shopRole
 	 * @return
 	 */
 	@PostMapping("/updaetShopRole")
 	@ResponseBody
-	public ServerResponse<?> updaetShopRole(@RequestBody ShopRole shopRole){
+	public ServerResponse<?> updaetShopRole(@RequestBody ShopRole shopRole) {
 		shopRole.setUpdatedTime(new Date());
 		return shopRoleService.updateShopRole(shopRole);
 	}
+
 	/**
 	 * 删除角色信息
+	 * 
 	 * @param roleId
 	 * @return
 	 */
 	@PostMapping("/deleteShopRole")
 	@ResponseBody
-	public ServerResponse<?> deleteShopRole(@RequestParam("roleId")Integer roleId){
+	public ServerResponse<?> deleteShopRole(@RequestParam("roleId") Integer roleId) {
 		return shopRoleService.deleteShopRole(roleId);
 	}
 }

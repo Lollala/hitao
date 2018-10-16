@@ -19,6 +19,7 @@ import com.hzitxx.hitao.utils.ServerResponse;
 
 /**
  * 管理员操作日志
+ * 
  * @author WE1
  *
  */
@@ -26,51 +27,57 @@ import com.hzitxx.hitao.utils.ServerResponse;
 public class ShopAdminLogController {
 	@Autowired
 	private ShopAdminLogService shopAdminLogService;
-	
-	private Map<String,Object> map=new HashMap<>();
+
+	private Map<String, Object> map = new HashMap<>();
+
 	/**
 	 * 分页查询
+	 * 
 	 * @param page
 	 * @param limit
 	 * @param content
 	 * @return
 	 */
 	@GetMapping("/findShopAdminLog")
-	public ServerResponse<LayuiEntity<ShopAdminLog>> findShopAdminLog(@RequestParam("page")Integer page,
-			@RequestParam("limit")Integer limit,String content){
-		if(StringUtils.isEmpty(content)) {
-			map.put("content", content);
-		}
+	public ServerResponse<LayuiEntity<ShopAdminLog>> findShopAdminLog(@RequestParam("page") Integer page,
+			@RequestParam("limit") Integer limit, String content) {
+		map.put("content", content);
 		return shopAdminLogService.findShopAdminLog(page, limit, map);
 	}
+
 	/**
 	 * 添加日志
+	 * 
 	 * @param shopAdminLog
 	 * @return
 	 */
 	@PostMapping("/addShopAdminLog")
-	public ServerResponse<?> addShopAdminLog(@RequestBody ShopAdminLog shopAdminLog){
+	public ServerResponse<?> addShopAdminLog(@RequestBody ShopAdminLog shopAdminLog) {
 		shopAdminLog.setCreatedTime(new Date());
 		return shopAdminLogService.addShopAdminLog(shopAdminLog);
 	}
+
 	/**
 	 * 修改日志
+	 * 
 	 * @param shopAdminLog
 	 * @return
 	 */
 	@PostMapping("/updateShopAdminLog")
-	public ServerResponse<?> updateShopAdminLog(@RequestBody ShopAdminLog shopAdminLog){
+	public ServerResponse<?> updateShopAdminLog(@RequestBody ShopAdminLog shopAdminLog) {
 		shopAdminLog.setUpdatedTime(new Date());
 		return shopAdminLogService.updateShopAdminLog(shopAdminLog);
 	}
+
 	/**
 	 * 物理删除日志
+	 * 
 	 * @param logId
 	 * @return
 	 */
 	@PostMapping("/deleteShopAdminLog")
-	public ServerResponse<?> deleteShopAdminLog(@RequestParam("logId")Integer logId){
-		
+	public ServerResponse<?> deleteShopAdminLog(@RequestParam("logId") Integer logId) {
+
 		return shopAdminLogService.deleteShopAdminLog(logId);
 	}
 }
