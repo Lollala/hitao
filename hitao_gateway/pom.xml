@@ -1,12 +1,14 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.hzitxx.hitao</groupId>
-    <artifactId>hitao</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <artifactId>hitao_gateway</artifactId>
-  <!-- 子级特有的jar包 -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.hzitxx.hitao</groupId>
+		<artifactId>hitao</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>hitao_gateway</artifactId>
+	<!-- 子级特有的jar包 -->
 	<dependencies>
 		<!-- 引入公共项目 -->
 		<dependency>
@@ -15,5 +17,7 @@
 			<artifactId>hitao_commons</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		
+
 	</dependencies>
 </project>

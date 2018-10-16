@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.hitao.mapper.ShopRoleMenuMapper">
+
+	<!-- 查询 -->
+	<select id="findShopRoleMenu" parameterType="map"
+		resultMap="shopRoleMenuMap">
+		select id,role_id,menu_id from shop_role_menu
+		<where>
+			<if test="roleId!=null and roleId!=''">
+				role_id=roleId
+			</if>
+		</where>
+	</select>
+
+	<!-- 增加 -->
+	<insert id="addShopRoleMenu"
+		parameterType="com.hzitxx.hitao.entity.ShopRoleMenu">
+		insert into shop_role_menu(role_id,menu_id) values(#{roleId},#{menuId})
+	</insert>
+
+	<!-- 修改 -->
+	<update id="updateShopRoleMenu"
+		parameterType="com.hzitxx.hitao.entity.ShopRoleMenu">
+		update shop_role_menu set role_id=#{roleId},#{menuId} where id=#{id}
+	</update>
+
+	<!-- 删除 -->
+	<delete id="deleteShopRoleMenu" parameterType="Integer">
+		delete from shop_role_menu where id=#{id}
+	</delete>
+
+	<resultMap type="com.hzitxx.hitao.entity.ShopRoleMenu"
+		id="shopRoleMenuMap">
+		<id column="id" property="id" />
+		<result column="role_id" property="roleId" />
+		<result column="menu_id" property="menuId" />
+	</resultMap>
+</mapper>
