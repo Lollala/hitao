@@ -79,4 +79,5 @@ public class ShopAdminController {
 		service.updateShopAdmin(shopAdmin);
 		return ServerResponse.createBySuccessMessage("更新成功!");
 	}
+	
 }
