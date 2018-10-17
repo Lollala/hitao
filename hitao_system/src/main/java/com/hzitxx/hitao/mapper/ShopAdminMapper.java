@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.hzitxx.hitao.entity.ShopAdmin;
+import com.hzitxx.hitao.utils.ServerResponse;
 
 /**
  * 管理员表
@@ -48,5 +49,8 @@ public interface ShopAdminMapper {
 	 * @return
 	 */
 	ShopAdmin findone(Integer adminId);
-
+	/**
+	 * 根据用户名和密码查询账号是否存在
+	 */
+	public Integer findOneShopAdminByUAP(Map<String, Object> map);
 }

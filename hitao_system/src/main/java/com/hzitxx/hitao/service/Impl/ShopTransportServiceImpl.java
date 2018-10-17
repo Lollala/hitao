@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -13,7 +14,7 @@ import com.hzitxx.hitao.mapper.ShopTransportMapper;
 import com.hzitxx.hitao.service.ShopTransportService;
 import com.hzitxx.hitao.utils.PageUtil;
 import com.hzitxx.hitao.utils.ServerResponse;
-
+@Service
 public class ShopTransportServiceImpl implements ShopTransportService{
     @Autowired
     private ShopTransportMapper mapper;

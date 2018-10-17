@@ -1,6 +1,7 @@
 package com.hzitxx.hitao.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hzitxx.hitao.entity.ShopAdmin;
 import com.hzitxx.hitao.utils.PageUtil;
@@ -49,6 +50,10 @@ public interface ShopAdminService {
 	 * 物理删除
 	 */
 	public ServerResponse<Integer> deleteShopAdmin(Integer adminId);
+	/**
+	 * 根据用户名和密码查询是否存在
+	 */
+	public ServerResponse<Integer> findOneShopAdminByUAP(String username,String password);
 }
 
 

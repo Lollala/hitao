@@ -1,6 +1,8 @@
 package com.hzitxx.hitao.service.Impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +12,7 @@ import com.github.pagehelper.PageInfo;
 import com.hzitxx.hitao.entity.ShopAdmin;
 import com.hzitxx.hitao.mapper.ShopAdminMapper;
 import com.hzitxx.hitao.service.ShopAdminService;
+import com.hzitxx.hitao.utils.Md5Util;
 import com.hzitxx.hitao.utils.PageUtil;
 import com.hzitxx.hitao.utils.ServerResponse;
 
@@ -23,6 +26,11 @@ public class ShopAdminServiceImpl implements ShopAdminService {
 	 */
 	@Override
 	public ServerResponse<Integer> addShopAdmin(ShopAdmin shopAdmin) {
+		try {
+			shopAdmin.setAdminPassword(Md5Util.getMD5(shopAdmin.getAdminPassword()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		int result = mapper.addShopAdmin(shopAdmin);
 		if (result != 1) {
 			return ServerResponse.createByErrorMessage("添加失败");
@@ -79,6 +87,23 @@ public class ShopAdminServiceImpl implements ShopAdminService {
 			return ServerResponse.createByErrorMessage("删除失败");
 		}
 		return ServerResponse.createBySuccessMessage("删除成功");
+	}
+	/**
+	 * 根据用户名和密码查询账号是否存在
+	 */
+	@Override
+	public ServerResponse<Integer> findOneShopAdminByUAP(String username,String password) {
+		Map<String,Object> map=new HashMap<>();
+		try {
+			password=Md5Util.getMD5(password);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		int result=mapper .findOneShopAdminByUAP(map);
+		if(result!=1) {
+			return ServerResponse.createByErrorMessage("查找失败！");
+		}
+		return ServerResponse.createBySuccessMessage("查找成功！");
 	}
 
 }
