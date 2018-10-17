@@ -1,7 +1,9 @@
 package com.hzitxx.hitao.Test;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -53,7 +55,10 @@ public class TestShopAdminMapper2 {
 	 */
 	@Test
 	public void testSel(){
-		List<ShopAdmin> list = mapper.selectShopAdmin(null);
+		Map<String, Object> map = new HashMap<>();
+		map.put("adminName", "jack");
+		map.put("adminPassword", "123456");
+		List<ShopAdmin> list = mapper.selectShopAdmin(map);
 		System.out.println(list);
 	}
 	/**

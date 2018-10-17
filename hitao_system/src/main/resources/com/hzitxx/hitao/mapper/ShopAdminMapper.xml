@@ -84,6 +84,14 @@
 		SELECT
 		<include refid="basesql"></include>
 		from shop_admin
+		<where>
+		<if test="adminName!=null and adminName!=''">
+		and admin_name=#{adminName}
+		</if>
+		<if test="adminPassword!=null and adminPassword!=''">
+		and admin_password=#{adminPassword}
+		</if>
+		</where>
 	</select>
 	<resultMap id="samap" type="com.hzitxx.hitao.entity.ShopAdmin">
 		<id column="admin_id" property="adminId"></id>
