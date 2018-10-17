@@ -12,6 +12,7 @@ import org.springframework.util.StringUtils;
 import com.alibaba.fastjson.JSON;
 import com.auth0.jwt.interfaces.Claim;
 import com.hzitxx.hitao.utils.JwtTokenUtil;
+import com.mysql.fabric.xmlrpc.base.Data;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 
@@ -25,7 +26,7 @@ public class LoginFilter extends ZuulFilter{
 		RequestContext context=RequestContext.getCurrentContext();//获取当前请求对象的上下文对象
 		HttpServletRequest req=context.getRequest();
 		String uri=req.getRequestURI();//获取当前请求路径
-		if(uri.contains("/login")) {
+		if(uri.contains("/#/login")) {
 			return false;//放行登陆请求
 		}
 		return true;//拦截其他请求
@@ -33,10 +34,12 @@ public class LoginFilter extends ZuulFilter{
 
 	@Override
 	public Object run() {
+		System.out.println("网关过滤...");
 		RequestContext context=RequestContext.getCurrentContext();//获取当前访问对象的上下文对象
 		HttpServletRequest req=context.getRequest();
 		
-		String token=req.getParameter("token"); //获取token信息
+		String token=req.getHeader("data"); //获取token信息
+		System.out.println(token);
 		context.getResponse().setContentType("application/json;charset=utf-8");//设置返回数据的格式
 		//判断token是否为空
 		if(StringUtils.isEmpty(token)) {
