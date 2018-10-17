@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.hitao.mapper.ShopMessageMapper">
+	<!-- 增加消息 -->
+<insert id="addShopMessage" parameterType="com.hzitxx.hitao.entity.ShopMessage">
+	insert into shop_message
+	(message_parent_id,from_member_id,from_member_name,to_member_id,to_member_name,message_title,
+	message_body,message_time,message_update_time,message_open,message_state,message_type,read_member_id,
+	del_member_id,message_ismore)
+	values(#{messageParentId},#{fromMemberId},#{fromMemberName},#{toMemberId},#{toMemberName}
+	,#{messageTitle},#{messageBody},#{messageTime},#{messageUpdateTime},#{messageOpen},#{messageState}
+	,#{messageType},#{readMemberId},#{delMemberId},#{messageIsmore})
+</insert>
+<!-- 删除消息 -->
+<delete id="deleteShopMessage" parameterType="com.hzitxx.hitao.entity.ShopMessage">
+	DELETE FROM shop_message WHERE message_id=#{messageId} 
+</delete>
+ <!-- 更新 -->
+ <update id="updateShopMessage">
+ update	shop_message set message_id=#{messageId},message_parent_id=#{messageParentId},from_member_id=#{fromMemberId},
+ 	from_member_name=#{fromMemberName},to_member_id=#{toMemberId},to_member_name=#{toMemberName},message_title=#{messageTitle},
+ 	message_body=#{messageBody},message_time=#{messageTime},message_update_time=#{messageUpdateTime},message_open=#{messageOpen},
+ 	message_state=#{messageState},message_type=#{messageType},read_member_id=#{readMemberId},del_member_id=#{delMemberId},message_ismore=#{messageIsmore} where message_id=#{messageId}
+ </update>
+
+<!-- 查询一条消息 -->
+<select id="findone" resultMap="messageMap">
+	SELECT
+		<include refid="all"></include>
+		from shop_message WHERE message_id=#{messageId}
+</select>
+
+<!-- 查询所有消息 -->
+<select id="selectShopMessage" resultMap="messageMap">
+	select 
+	<include refid="all"></include>
+	from shop_message
+</select>
+	<resultMap type="com.hzitxx.hitao.entity.ShopMessage" id="messageMap">
+	<id column="message_id" property="messageId"></id>
+		<result column="message_parent_id" property="messageParentId"></result>
+		<result column="from_member_id" property="fromMemberId"></result>
+		<result column="from_member_name" property="fromMemberName"></result>
+		<result column="to_member_id" property="toMemberId"></result>
+		<result column="to_member_name" property="toMemberName"></result>
+		<result column="message_title" property="messageTitle"></result>
+		<result column="message_body" property="messageBody"></result>
+		<result column="message_time" property="messageTime"></result>
+		<result column="message_update_time" property="messageUpdateTime"></result>
+		<result column="message_open" property="messageOpen"></result>
+		<result column="message_state" property="messageState"></result>
+		<result column="message_type" property="messageType"></result>
+		<result column="read_member_id" property="readMemberId"></result>
+		<result column="del_member_id" property="delMemberId"></result>
+		<result column="message_ismore" property="messageIsmore"></result>
+	</resultMap>
+	<sql id="all">
+	message_id,message_parent_id,from_member_id,from_member_name,to_member_id,to_member_name,message_title,
+	message_body,message_time,message_update_time,message_open,message_state,message_type,read_member_id,
+	del_member_id,message_ismore
+	</sql>
+</mapper>

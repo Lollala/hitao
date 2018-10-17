@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.hitao.mapper.ShopSalenumMapper">
+	<!-- 删除商品销售统计信息 -->
+	<delete id="delectShopSalenum" parameterType="com.hzitxx.hitao.entity.ShopSalenum">
+		delete from
+		shop_salenum where id=#{id}
+	</delete>
+	<!-- 添加销售统计信息 -->
+	<insert id="addShopSalenum" parameterType="com.hzitxx.hitao.entity.ShopSalenum">
+		insert into shop_salenum(
+		<include refid="all"></include>
+		)
+		values(#{id},#{date},#{salenum},#{goodsId})
+	</insert>
+	<!-- 更新销售统计信息 -->
+	<update id="updateShopSalenum" parameterType="com.hzitxx.hitao.entity.ShopSalenum">
+		update shop_salenum
+		<set>
+			<if test="id!='' and id!=null">id=#{id},</if>
+			<if test="date!='' and date!=null">date=#{date},</if>
+			<if test="salenum!='' and salenum!=null">salenum=#{salenum},</if>
+			<if test="goodsId!='' and goodsId!=null">goods_id=#{goodsId},</if>
+		</set>
+		where id=#{id}
+	</update>
+	<!-- 查询商品销售统计 -->
+	<select id="findAll" parameterType="com.hzitxx.hitao.entity.ShopSalenum"
+		resultMap="ShopSalenumMapper">
+		SELECT
+		<include refid="all"></include>
+		from shop_salenum
+		<where>
+			<if test="Id!='' and Id!=null">
+				id like concat(#{Id},'%')
+			</if>
+		</where>
+	</select>
+	<resultMap id="ShopSalenumMapper" type="com.hzitxx.hitao.entity.ShopSalenum">
+		<id column="shop_salenum" property="shopSalenum" />
+		<result column="id" property="id" />
+		<result column="date" property="date" />
+		<result column="salenum" property="salenum" />
+		<result column="goods_id" property="goodsId" />
+	</resultMap>
+	<sql id="all">
+		id,date,salenum,goods_id
+	</sql>
+</mapper>
