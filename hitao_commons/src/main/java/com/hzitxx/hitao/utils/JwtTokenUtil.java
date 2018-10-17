@@ -30,7 +30,7 @@ public class JwtTokenUtil {
      * @return  token
      * @throws UnsupportedEncodingException
      */
-    public static String createToken(String username,Integer adminId) throws UnsupportedEncodingException {
+    public static String createToken(String adminName,String adminId) throws UnsupportedEncodingException {
         Map<String,Object> header = new HashMap<String,Object>();
         //头信息指定了JWT使用的签名算法
         header.put("type","jwt");
@@ -38,8 +38,8 @@ public class JwtTokenUtil {
         long currentTime = System.currentTimeMillis();
         long expireTime = currentTime + 30*60*1000;// 半个小时后超时
         String token = JWT.create().withHeader(header)
-                .withClaim("username",username)
-                .withClaim("userid",adminId)
+                .withClaim("adminname",adminName)
+                .withClaim("adminid",adminId)
                 .withIssuedAt(new Date(currentTime))  //签发时间
                 .withExpiresAt(new Date(expireTime))  ////过期时间
                 .withJWTId("df046d05-8948-4c08-8506-988cc72e057e")  //唯一的身份，主要作为一次性token，从而避免重放攻击
@@ -66,17 +66,17 @@ public class JwtTokenUtil {
     }
 
     /**
-     * 校验token是否正确
+     * 校验token是否正确，不需要自己调用，在解析token的parseToken中将自动调用验证
      * @param token 密钥
      * @param secret 用户的密码
      * @return 是否正确
      */
-    public static boolean verify(String token, String username,Integer adminId, String secret) {
+    public static boolean verify(String token, String adminName,String adminId, String secret) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             JWTVerifier verifier = JWT.require(algorithm)
-                    .withClaim("username", username)
-                    .withClaim("adminId",adminId)
+                    .withClaim("adminname", adminName)
+                    .withClaim("adminid",adminId)
                     .build();
             DecodedJWT jwt = verifier.verify(token);
             return true;
@@ -91,7 +91,7 @@ public class JwtTokenUtil {
      * @param secret 用户的密码
      * @return 加密的token
      */
-    public static String sign(String username,Integer adminId, String secret) {
+    public static String sign(String adminName,String adminId, String secret) {
         try {
             Date date = new Date(System.currentTimeMillis()+EXPIRE_TIME);
             Algorithm algorithm = Algorithm.HMAC256(secret);
@@ -101,8 +101,8 @@ public class JwtTokenUtil {
             header.put("alg","HS256");// HS256 表示使用了HMAC-SHA256 算法
             // 附带username信息
             return JWT.create().withHeader(header)
-                    .withClaim("adminId",adminId)
-                    .withClaim("username", username)
+                    .withClaim("adminid",adminId)
+                    .withClaim("adminname", adminName)
                     .withExpiresAt(date)
                     .sign(algorithm);
         } catch (UnsupportedEncodingException e) {
@@ -116,7 +116,7 @@ public class JwtTokenUtil {
      */
     public static  String getUser(String token) {
         DecodedJWT decodedJWT=  JWT.decode(token);;
-        return decodedJWT.getClaim("username").asString();
+        return decodedJWT.getClaim("adminname").asString();
     }
 
     /**
@@ -126,6 +126,6 @@ public class JwtTokenUtil {
      */
     public static  String getUserId(String token){
         DecodedJWT decodedJWT = JWT.decode(token);
-        return decodedJWT.getClaim("adminId").asString();
+        return decodedJWT.getClaim("adminid").asString();
     }
 }

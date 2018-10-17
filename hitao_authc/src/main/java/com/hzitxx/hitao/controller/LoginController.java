@@ -6,34 +6,66 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
+import com.auth0.jwt.interfaces.Claim;
 import com.hzitxx.hitao.entity.ShopAdmin;
 import com.hzitxx.hitao.service.ShopAdminService;
 import com.hzitxx.hitao.utils.JwtTokenUtil;
 import com.hzitxx.hitao.utils.ServerResponse;
 
 @RestController
-@RequestMapping("/authc")
+@RequestMapping("/authc/shopAdmin")
 public class LoginController {
 	@Autowired
 	private ShopAdminService shopAdminService;
-
-	@GetMapping("/login")
+	/**
+	 * 登陆验证，在验证成功后生成token返回
+	 * @param adminName
+	 * @param adminPassword
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
+	@PostMapping("/login")
 	public ServerResponse<?> login(@RequestParam("adminName") String adminName, @RequestParam("adminPassword") String adminPassword)
 			throws UnsupportedEncodingException {
 		List<ShopAdmin> shopAdminList = shopAdminService.findOneShopAdminByUAP(adminName, adminPassword);
 		if (shopAdminList.size()==0) {
 			return ServerResponse.createByErrorMessage("登陆失败！用户或密码错误！");
 		} else {
-			String token = JwtTokenUtil.createToken(adminName,shopAdminList.get(0).getAdminId());
+			System.out.println(shopAdminList.get(0).getAdminId());
+			String token = JwtTokenUtil.createToken(adminName,shopAdminList.get(0).getAdminId()+"");
 			Map<String,String> tokenMap=new HashMap<>();
 			tokenMap.put("token", token);
 			return ServerResponse.createBySuccess("验证成功！返回token",JSON.toJSON(tokenMap));
 		}
+	}
+	
+	@GetMapping("/info")
+	public ServerResponse<?> info(@RequestHeader("token")String token){
+		try {
+			Map<String,Claim> tokenMap=JwtTokenUtil.parseToken(token);
+			if(StringUtils.isEmpty(tokenMap)) {
+				return ServerResponse.createByErrorMessage("用户信息获取失败！");
+			}else {
+				Map<String,Object> result=new HashMap<>();
+				Integer adminId=Integer.parseInt(JwtTokenUtil.getUserId(token));
+				result.put("shopAdmin", shopAdminService.findone(adminId));
+				result.put("permissions", "[{\"path\":\"/order\",\"component\":\"order/order\",\"name\":\"order\",\"meta\":\"{\\\"title\\\":\\\"order\\\",\\\"icon\\\":\\\"form\\\"}\",\"children\":[{\"path\":\"order\",\"component\":\"order/order\",\"name\":\"order\",\"meta\":\"{\\\"title\\\":\\\"order\\\":\\\"noCache\\\":\\\"true\\\"}\"}]}]");
+				result.put("roles", " admin");
+				result.put("avatar", "用户头像");
+				return ServerResponse.createBySuccess("获取用户数据成功！", JSON.toJSON(result));
+			}
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return ServerResponse.createByErrorMessage("系统错误！");
 	}
 }
