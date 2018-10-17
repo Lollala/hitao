@@ -22,7 +22,7 @@ import com.hzitxx.hitao.utils.JwtTokenUtil;
 import com.hzitxx.hitao.utils.ServerResponse;
 
 @RestController
-@RequestMapping("/authc/shopAdmin")
+@RequestMapping("/shopAdmin")
 public class LoginController {
 	@Autowired
 	private ShopAdminService shopAdminService;
