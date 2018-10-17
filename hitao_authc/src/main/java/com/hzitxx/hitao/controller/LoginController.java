@@ -35,14 +35,14 @@ public class LoginController {
 	 * @throws UnsupportedEncodingException
 	 */
 	@PostMapping("/login")
-	public ServerResponse<?> login(@RequestBody @RequestParam("adminName") String adminName,@RequestBody @RequestParam("adminPassword") String adminPassword)
+	public ServerResponse<?> login(@RequestBody ShopAdmin shopAdmin)
 			throws UnsupportedEncodingException {
-		List<ShopAdmin> shopAdminList = shopAdminService.findOneShopAdminByUAP(adminName, adminPassword);
+		List<ShopAdmin> shopAdminList = shopAdminService.findOneShopAdminByUAP(shopAdmin.getAdminName(), shopAdmin.getAdminPassword());
 		if (shopAdminList.size()==0) {
 			return ServerResponse.createByErrorMessage("登陆失败！用户或密码错误！");
 		} else {
 			System.out.println(shopAdminList.get(0).getAdminId());
-			String token = JwtTokenUtil.createToken(adminName,shopAdminList.get(0).getAdminId()+"");
+			String token = JwtTokenUtil.createToken(shopAdmin.getAdminName(),shopAdminList.get(0).getAdminId()+"");
 			Map<String,String> tokenMap=new HashMap<>();
 			tokenMap.put("token", token);
 			return ServerResponse.createBySuccess("验证成功！返回token",JSON.toJSON(tokenMap));
