@@ -44,7 +44,6 @@ public class LoginController {
 		if (shopAdminList.size() == 0) {
 			return ServerResponse.createByErrorMessage("登陆失败！用户或密码错误！");
 		} else {
-			System.out.println(shopAdminList.get(0).getAdminId());
 			String token = JwtTokenUtil.createToken(shopAdmin.getAdminName(), shopAdminList.get(0).getAdminId() + "");
 			Map<String, String> tokenMap = new HashMap<>();
 			tokenMap.put("token", token);
