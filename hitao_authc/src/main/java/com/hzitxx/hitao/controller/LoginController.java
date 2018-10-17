@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,7 +35,7 @@ public class LoginController {
 	 * @throws UnsupportedEncodingException
 	 */
 	@PostMapping("/login")
-	public ServerResponse<?> login(@RequestParam("adminName") String adminName, @RequestParam("adminPassword") String adminPassword)
+	public ServerResponse<?> login(@RequestBody @RequestParam("adminName") String adminName,@RequestBody @RequestParam("adminPassword") String adminPassword)
 			throws UnsupportedEncodingException {
 		List<ShopAdmin> shopAdminList = shopAdminService.findOneShopAdminByUAP(adminName, adminPassword);
 		if (shopAdminList.size()==0) {
