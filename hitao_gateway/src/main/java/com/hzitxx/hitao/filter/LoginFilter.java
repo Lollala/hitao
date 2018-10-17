@@ -26,7 +26,7 @@ public class LoginFilter extends ZuulFilter{
 		RequestContext context=RequestContext.getCurrentContext();//获取当前请求对象的上下文对象
 		HttpServletRequest req=context.getRequest();
 		String uri=req.getRequestURI();//获取当前请求路径
-		if(uri.contains("/#/login")) {
+		if(uri.contains("/login")) {
 			return false;//放行登陆请求
 		}
 		return true;//拦截其他请求
@@ -37,9 +37,8 @@ public class LoginFilter extends ZuulFilter{
 		System.out.println("网关过滤...");
 		RequestContext context=RequestContext.getCurrentContext();//获取当前访问对象的上下文对象
 		HttpServletRequest req=context.getRequest();
-		
-		String token=req.getHeader("data"); //获取token信息
-		System.out.println(token);
+		String token=req.getHeader("token"); //获取token信息
+		//System.out.println(token);
 		context.getResponse().setContentType("application/json;charset=utf-8");//设置返回数据的格式
 		//判断token是否为空
 		if(StringUtils.isEmpty(token)) {
@@ -54,6 +53,7 @@ public class LoginFilter extends ZuulFilter{
 		//token若不为空,则应去解析,验证合法性
 		try {
 			Map<String,Claim> map=JwtTokenUtil.parseToken(token);
+			//System.out.println(map);
 			if(StringUtils.isEmpty(map)) {
 				//解析失败,token不正确或者已经失效了
 				context.setSendZuulResponse(false);
@@ -63,12 +63,6 @@ public class LoginFilter extends ZuulFilter{
 				map2.put("success",false);
 				map2.put("data", null);
 				context.setResponseBody(JSON.toJSONString(map2));
-			}else {
-				// 成功,token是正确有效的
-				Map<String, Object> map3 = new HashMap<>();
-				map3.put("code", 1);
-				map3.put("msg", "pass!");
-				context.setResponseBody(JSON.toJSONString(map3));
 			}
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
