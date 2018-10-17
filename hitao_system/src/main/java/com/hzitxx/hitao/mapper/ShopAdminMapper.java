@@ -49,8 +49,5 @@ public interface ShopAdminMapper {
 	 * @return
 	 */
 	ShopAdmin findone(Integer adminId);
-	/**
-	 * 根据用户名和密码查询账号是否存在
-	 */
-	public Integer findOneShopAdminByUAP(Map<String, Object> map);
+
 }

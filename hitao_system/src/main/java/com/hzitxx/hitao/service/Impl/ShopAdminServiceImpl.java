@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -92,18 +93,17 @@ public class ShopAdminServiceImpl implements ShopAdminService {
 	 * 根据用户名和密码查询账号是否存在
 	 */
 	@Override
-	public ServerResponse<Integer> findOneShopAdminByUAP(String username,String password) {
+	public List<ShopAdmin> findOneShopAdminByUAP(String adminName,String adminPassword) {
 		Map<String,Object> map=new HashMap<>();
 		try {
-			password=Md5Util.getMD5(password);
+			map.put("adminName", adminName);
+			adminPassword=Md5Util.getMD5(adminPassword);
+			map.put("adminPassword", adminPassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		int result=mapper .findOneShopAdminByUAP(map);
-		if(result!=1) {
-			return ServerResponse.createByErrorMessage("查找失败！");
-		}
-		return ServerResponse.createBySuccessMessage("查找成功！");
+		List<ShopAdmin> result=mapper .selectShopAdmin(map);
+		return result;
 	}
 
 }

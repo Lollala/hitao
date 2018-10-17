@@ -80,4 +80,9 @@ public class TestShopAdminService {
 		ServerResponse<Integer> response = service.deleteShopAdmin(19);
 		System.out.println(response.getMsg());
 	}
+	
+	@Test
+	public void aaa() {
+		System.out.println(service.findOneShopAdminByUAP("士大夫", "123456"));
+	}
 }

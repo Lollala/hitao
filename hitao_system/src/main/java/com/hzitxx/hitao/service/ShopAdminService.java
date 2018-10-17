@@ -53,7 +53,7 @@ public interface ShopAdminService {
 	/**
 	 * 根据用户名和密码查询是否存在
 	 */
-	public ServerResponse<Integer> findOneShopAdminByUAP(String username,String password);
+	public List<ShopAdmin> findOneShopAdminByUAP(String adminName,String adminPassword);
 }
 
 
