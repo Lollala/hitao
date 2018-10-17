@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,14 +35,14 @@ public class LoginController {
 	 * @throws UnsupportedEncodingException
 	 */
 	@PostMapping("/login")
-	public ServerResponse<?> login(@RequestParam("adminName") String adminName, @RequestParam("adminPassword") String adminPassword)
+	public ServerResponse<?> login(@RequestBody ShopAdmin shopAdmin)
 			throws UnsupportedEncodingException {
-		List<ShopAdmin> shopAdminList = shopAdminService.findOneShopAdminByUAP(adminName, adminPassword);
+		List<ShopAdmin> shopAdminList = shopAdminService.findOneShopAdminByUAP(shopAdmin.getAdminName(), shopAdmin.getAdminPassword());
 		if (shopAdminList.size()==0) {
 			return ServerResponse.createByErrorMessage("登陆失败！用户或密码错误！");
 		} else {
 			System.out.println(shopAdminList.get(0).getAdminId());
-			String token = JwtTokenUtil.createToken(adminName,shopAdminList.get(0).getAdminId()+"");
+			String token = JwtTokenUtil.createToken(shopAdmin.getAdminName(),shopAdminList.get(0).getAdminId()+"");
 			Map<String,String> tokenMap=new HashMap<>();
 			tokenMap.put("token", token);
 			return ServerResponse.createBySuccess("验证成功！返回token",JSON.toJSON(tokenMap));
