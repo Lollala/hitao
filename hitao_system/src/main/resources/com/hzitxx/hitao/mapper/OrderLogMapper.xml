@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.hitao.mapper.OrderLogMapper">
+    <!--shop_order_log表中的列-->
+    <sql id="orderLogBaseColumn">
+         log_id,
+         order_id,
+         log_msg,
+         log_time,
+         log_role,
+         log_user,
+         log_orderstate
+    </sql>
+
+
+    <!--添加-->
+    <insert id="addOrderLog" parameterType="com.hzitxx.hitao.entity.OrderLog">
+        INSERT INTO shop_order_log(
+            <include refid="orderLogBaseColumn"/>
+        ) VALUES(
+                #{logId},
+                #{orderId},
+                #{logMsg},
+                #{logTime},
+                #{logRole},
+                #{logUser},
+                #{logOrderstate}
+        )
+    </insert>
+    <insert id="addOrderLogSelective" parameterType="com.hzitxx.hitao.entity.OrderLog">
+        insert into shop_order_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="logId != null">
+                log_id,
+            </if>
+            <if test="orderId != null">
+                order_id,
+            </if>
+            <if test="logMsg != null">
+                log_msg,
+            </if>
+            <if test="logTime != null">
+                log_time,
+            </if>
+            <if test="logRole != null">
+                log_role,
+            </if>
+            <if test="logUser != null">
+                log_user,
+            </if>
+            <if test="logOrderstate != null">
+                log_orderstate,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="logId != null">
+                #{logId},
+            </if>
+            <if test="orderId != null">
+                #{orderId},
+            </if>
+            <if test="logMsg != null">
+                #{logMsg},
+            </if>
+            <if test="logTime != null">
+                #{logTime},
+            </if>
+            <if test="logRole != null">
+                #{logRole},
+            </if>
+            <if test="logUser != null">
+                #{logUser},
+            </if>
+            <if test="logOrderstate != null">
+                #{logOrderstate},
+            </if>
+        </trim>
+    </insert>
+    <!--根据id删除数据-->
+    <delete id="deleteById" parameterType="integer">
+        DELETE FROM  shop_order_log WHERE
+        log_id = #{logId}
+    </delete>
+
+    <!--根据id批量删除数据-->
+    <delete id="deleteByIds" parameterType="java.lang.String">
+          delete FROM  shop_order_log WHERE log_id in
+          <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+          </foreach>
+    </delete>
+    <!--根据id修改数据-->
+    <update id="updateById" parameterType="com.hzitxx.hitao.entity.OrderLog">
+        UPDATE shop_order_log
+        <set>
+          log_id=#{logId},
+          order_id=#{orderId},
+          log_msg=#{logMsg},
+          log_time=#{logTime},
+          log_role=#{logRole},
+          log_user=#{logUser},
+          log_orderstate=#{logOrderstate}
+        </set>
+        WHERE
+           log_id = #{logId}
+    </update>
+
+    <update id="updateSelectiveById" parameterType="com.hzitxx.hitao.entity.OrderLog">
+        UPDATE shop_order_log
+        <set>
+    <if test="logId != null">
+          log_id = #{logId},
+    </if>
+    <if test="orderId != null">
+          order_id = #{orderId},
+    </if>
+    <if test="logMsg != null">
+          log_msg = #{logMsg},
+    </if>
+    <if test="logTime != null">
+          log_time = #{logTime},
+    </if>
+    <if test="logRole != null">
+          log_role = #{logRole},
+    </if>
+    <if test="logUser != null">
+          log_user = #{logUser},
+    </if>
+    <if test="logOrderstate != null">
+          log_orderstate = #{logOrderstate},
+    </if>
+    </set>
+        WHERE
+      log_id = #{logId}
+    </update>
+    <!--根据id查询一条数据-->
+    <select id="findOne" resultMap="orderLogMap" parameterType="integer">
+        select
+        <include refid="orderLogBaseColumn"/>
+        from
+            shop_order_log
+        WHERE
+          log_id = #{logId}
+    </select>
+    <!--查询数据-->
+    <select id="searchOrderLog" parameterType="map" resultMap="orderLogMap">
+        SELECT
+        <include refid="orderLogBaseColumn"/>
+        FROM shop_order_log
+        <include refid="orderLogBaseWhereSql"/>
+    </select>
+    <!--基础查询条件-->
+    <sql id="orderLogBaseWhereSql">
+        <if test="map!=null">
+            <where>
+                <if test="logId !=null">
+                    AND log_id = #{map.logId}
+                </if>
+                <if test="orderId !=null">
+                    AND order_id = #{map.orderId}
+                </if>
+                <if test="logMsg !=null">
+                    AND log_msg = #{map.logMsg}
+                </if>
+                <if test="logTime !=null">
+                    AND log_time = #{map.logTime}
+                </if>
+                <if test="logRole !=null">
+                    AND log_role = #{map.logRole}
+                </if>
+                <if test="logUser !=null">
+                    AND log_user = #{map.logUser}
+                </if>
+                <if test="logOrderstate !=null">
+                    AND log_orderstate = #{map.logOrderstate}
+                </if>
+            </where>
+        </if>
+    </sql>
+
+         <!-- 通用查询映射结果 -->
+    <resultMap id="orderLogMap" type="com.hzitxx.hitao.entity.OrderLog">
+            <id column="log_id" property="logId"/>
+            <result column="order_id" property="orderId"/>
+            <result column="log_msg" property="logMsg"/>
+            <result column="log_time" property="logTime"/>
+            <result column="log_role" property="logRole"/>
+            <result column="log_user" property="logUser"/>
+            <result column="log_orderstate" property="logOrderstate"/>
+     </resultMap>
+</mapper>

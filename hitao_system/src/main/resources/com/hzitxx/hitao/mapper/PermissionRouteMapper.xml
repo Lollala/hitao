@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.hitao.mapper.PermissionRouteMapper">
+    <!--shop_permission_route表中的列-->
+    <sql id="permissionRouteBaseColumn">
+         route_id,
+         parent_id,
+         path,
+         component,
+         name,
+         redirect,
+         meta
+    </sql>
+
+
+    <!--添加-->
+    <insert id="addPermissionRoute" parameterType="com.hzitxx.hitao.entity.PermissionRoute">
+        INSERT INTO shop_permission_route(
+            <include refid="permissionRouteBaseColumn"/>
+        ) VALUES(
+                #{routeId},
+                #{parentId},
+                #{path},
+                #{component},
+                #{name},
+                #{redirect},
+                #{meta}
+        )
+    </insert>
+    <insert id="addPermissionRouteSelective" parameterType="com.hzitxx.hitao.entity.PermissionRoute">
+        insert into shop_permission_route
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="routeId != null">
+                route_id,
+            </if>
+            <if test="parentId != null">
+                parent_id,
+            </if>
+            <if test="path != null">
+                path,
+            </if>
+            <if test="component != null">
+                component,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="redirect != null">
+                redirect,
+            </if>
+            <if test="meta != null">
+                meta,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="routeId != null">
+                #{routeId},
+            </if>
+            <if test="parentId != null">
+                #{parentId},
+            </if>
+            <if test="path != null">
+                #{path},
+            </if>
+            <if test="component != null">
+                #{component},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="redirect != null">
+                #{redirect},
+            </if>
+            <if test="meta != null">
+                #{meta},
+            </if>
+        </trim>
+    </insert>
+    <!--根据id删除数据-->
+    <delete id="deleteById" parameterType="integer">
+        DELETE FROM  shop_permission_route WHERE
+        route_id = #{routeId}
+    </delete>
+
+    <!--根据id批量删除数据-->
+    <delete id="deleteByIds" parameterType="java.lang.String">
+          delete FROM  shop_permission_route WHERE route_id in
+          <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+          </foreach>
+    </delete>
+    <!--根据id修改数据-->
+    <update id="updateById" parameterType="com.hzitxx.hitao.entity.PermissionRoute">
+        UPDATE shop_permission_route
+        <set>
+          route_id=#{routeId},
+          parent_id=#{parentId},
+          path=#{path},
+          component=#{component},
+          name=#{name},
+          redirect=#{redirect},
+          meta=#{meta}
+        </set>
+        WHERE
+           route_id = #{routeId}
+    </update>
+
+    <update id="updateSelectiveById" parameterType="com.hzitxx.hitao.entity.PermissionRoute">
+        UPDATE shop_permission_route
+        <set>
+    <if test="routeId != null">
+          route_id = #{routeId},
+    </if>
+    <if test="parentId != null">
+          parent_id = #{parentId},
+    </if>
+    <if test="path != null">
+          path = #{path},
+    </if>
+    <if test="component != null">
+          component = #{component},
+    </if>
+    <if test="name != null">
+          name = #{name},
+    </if>
+    <if test="redirect != null">
+          redirect = #{redirect},
+    </if>
+    <if test="meta != null">
+          meta = #{meta},
+    </if>
+    </set>
+        WHERE
+      route_id = #{routeId}
+    </update>
+    <!--根据id查询一条数据-->
+    <select id="findOne" resultMap="permissionRouteMap" parameterType="integer">
+        select
+        <include refid="permissionRouteBaseColumn"/>
+        from
+            shop_permission_route
+        WHERE
+          route_id = #{routeId}
+    </select>
+    <!--查询数据-->
+    <select id="searchPermissionRoute" parameterType="map" resultMap="permissionRouteMap">
+        SELECT
+        <include refid="permissionRouteBaseColumn"/>
+        FROM shop_permission_route
+        <include refid="permissionRouteBaseWhereSql"/>
+    </select>
+    <!--基础查询条件-->
+    <sql id="permissionRouteBaseWhereSql">
+        <if test="map!=null">
+            <where>
+                <if test="routeId !=null">
+                    AND route_id = #{map.routeId}
+                </if>
+                <if test="parentId !=null">
+                    AND parent_id = #{map.parentId}
+                </if>
+                <if test="path !=null">
+                    AND path = #{map.path}
+                </if>
+                <if test="component !=null">
+                    AND component = #{map.component}
+                </if>
+                <if test="name !=null">
+                    AND name = #{map.name}
+                </if>
+                <if test="redirect !=null">
+                    AND redirect = #{map.redirect}
+                </if>
+                <if test="meta !=null">
+                    AND meta = #{map.meta}
+                </if>
+            </where>
+        </if>
+    </sql>
+
+         <!-- 通用查询映射结果 -->
+    <resultMap id="permissionRouteMap" type="com.hzitxx.hitao.entity.PermissionRoute">
+            <id column="route_id" property="routeId"/>
+            <result column="parent_id" property="parentId"/>
+            <result column="path" property="path"/>
+            <result column="component" property="component"/>
+            <result column="name" property="name"/>
+            <result column="redirect" property="redirect"/>
+            <result column="meta" property="meta"/>
+     </resultMap>
+</mapper>

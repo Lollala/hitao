@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.hitao.mapper.AdvPositionMapper">
+    <!--shop_adv_position表中的列-->
+    <sql id="advPositionBaseColumn">
+         ap_id,
+         ap_name,
+         ap_intro,
+         ap_class,
+         ap_display,
+         is_use,
+         ap_width,
+         ap_height,
+         ap_price,
+         adv_num,
+         click_num,
+         default_content
+    </sql>
+
+
+    <!--添加-->
+    <insert id="addAdvPosition" parameterType="com.hzitxx.hitao.entity.AdvPosition">
+        INSERT INTO shop_adv_position(
+            <include refid="advPositionBaseColumn"/>
+        ) VALUES(
+                #{apId},
+                #{apName},
+                #{apIntro},
+                #{apClass},
+                #{apDisplay},
+                #{isUse},
+                #{apWidth},
+                #{apHeight},
+                #{apPrice},
+                #{advNum},
+                #{clickNum},
+                #{defaultContent}
+        )
+    </insert>
+    <insert id="addAdvPositionSelective" parameterType="com.hzitxx.hitao.entity.AdvPosition">
+        insert into shop_adv_position
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="apId != null">
+                ap_id,
+            </if>
+            <if test="apName != null">
+                ap_name,
+            </if>
+            <if test="apIntro != null">
+                ap_intro,
+            </if>
+            <if test="apClass != null">
+                ap_class,
+            </if>
+            <if test="apDisplay != null">
+                ap_display,
+            </if>
+            <if test="isUse != null">
+                is_use,
+            </if>
+            <if test="apWidth != null">
+                ap_width,
+            </if>
+            <if test="apHeight != null">
+                ap_height,
+            </if>
+            <if test="apPrice != null">
+                ap_price,
+            </if>
+            <if test="advNum != null">
+                adv_num,
+            </if>
+            <if test="clickNum != null">
+                click_num,
+            </if>
+            <if test="defaultContent != null">
+                default_content,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="apId != null">
+                #{apId},
+            </if>
+            <if test="apName != null">
+                #{apName},
+            </if>
+            <if test="apIntro != null">
+                #{apIntro},
+            </if>
+            <if test="apClass != null">
+                #{apClass},
+            </if>
+            <if test="apDisplay != null">
+                #{apDisplay},
+            </if>
+            <if test="isUse != null">
+                #{isUse},
+            </if>
+            <if test="apWidth != null">
+                #{apWidth},
+            </if>
+            <if test="apHeight != null">
+                #{apHeight},
+            </if>
+            <if test="apPrice != null">
+                #{apPrice},
+            </if>
+            <if test="advNum != null">
+                #{advNum},
+            </if>
+            <if test="clickNum != null">
+                #{clickNum},
+            </if>
+            <if test="defaultContent != null">
+                #{defaultContent},
+            </if>
+        </trim>
+    </insert>
+    <!--根据id删除数据-->
+    <delete id="deleteById" parameterType="integer">
+        DELETE FROM  shop_adv_position WHERE
+        ap_id = #{apId}
+    </delete>
+
+    <!--根据id批量删除数据-->
+    <delete id="deleteByIds" parameterType="java.lang.String">
+          delete FROM  shop_adv_position WHERE ap_id in
+          <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+          </foreach>
+    </delete>
+    <!--根据id修改数据-->
+    <update id="updateById" parameterType="com.hzitxx.hitao.entity.AdvPosition">
+        UPDATE shop_adv_position
+        <set>
+          ap_id=#{apId},
+          ap_name=#{apName},
+          ap_intro=#{apIntro},
+          ap_class=#{apClass},
+          ap_display=#{apDisplay},
+          is_use=#{isUse},
+          ap_width=#{apWidth},
+          ap_height=#{apHeight},
+          ap_price=#{apPrice},
+          adv_num=#{advNum},
+          click_num=#{clickNum},
+          default_content=#{defaultContent}
+        </set>
+        WHERE
+           ap_id = #{apId}
+    </update>
+
+    <update id="updateSelectiveById" parameterType="com.hzitxx.hitao.entity.AdvPosition">
+        UPDATE shop_adv_position
+        <set>
+    <if test="apId != null">
+          ap_id = #{apId},
+    </if>
+    <if test="apName != null">
+          ap_name = #{apName},
+    </if>
+    <if test="apIntro != null">
+          ap_intro = #{apIntro},
+    </if>
+    <if test="apClass != null">
+          ap_class = #{apClass},
+    </if>
+    <if test="apDisplay != null">
+          ap_display = #{apDisplay},
+    </if>
+    <if test="isUse != null">
+          is_use = #{isUse},
+    </if>
+    <if test="apWidth != null">
+          ap_width = #{apWidth},
+    </if>
+    <if test="apHeight != null">
+          ap_height = #{apHeight},
+    </if>
+    <if test="apPrice != null">
+          ap_price = #{apPrice},
+    </if>
+    <if test="advNum != null">
+          adv_num = #{advNum},
+    </if>
+    <if test="clickNum != null">
+          click_num = #{clickNum},
+    </if>
+    <if test="defaultContent != null">
+          default_content = #{defaultContent},
+    </if>
+    </set>
+        WHERE
+      ap_id = #{apId}
+    </update>
+    <!--根据id查询一条数据-->
+    <select id="findOne" resultMap="advPositionMap" parameterType="integer">
+        select
+        <include refid="advPositionBaseColumn"/>
+        from
+            shop_adv_position
+        WHERE
+          ap_id = #{apId}
+    </select>
+    <!--查询数据-->
+    <select id="searchAdvPosition" parameterType="map" resultMap="advPositionMap">
+        SELECT
+        <include refid="advPositionBaseColumn"/>
+        FROM shop_adv_position
+        <include refid="advPositionBaseWhereSql"/>
+    </select>
+    <!--基础查询条件-->
+    <sql id="advPositionBaseWhereSql">
+        <if test="map!=null">
+            <where>
+                <if test="apId !=null">
+                    AND ap_id = #{map.apId}
+                </if>
+                <if test="apName !=null">
+                    AND ap_name = #{map.apName}
+                </if>
+                <if test="apIntro !=null">
+                    AND ap_intro = #{map.apIntro}
+                </if>
+                <if test="apClass !=null">
+                    AND ap_class = #{map.apClass}
+                </if>
+                <if test="apDisplay !=null">
+                    AND ap_display = #{map.apDisplay}
+                </if>
+                <if test="isUse !=null">
+                    AND is_use = #{map.isUse}
+                </if>
+                <if test="apWidth !=null">
+                    AND ap_width = #{map.apWidth}
+                </if>
+                <if test="apHeight !=null">
+                    AND ap_height = #{map.apHeight}
+                </if>
+                <if test="apPrice !=null">
+                    AND ap_price = #{map.apPrice}
+                </if>
+                <if test="advNum !=null">
+                    AND adv_num = #{map.advNum}
+                </if>
+                <if test="clickNum !=null">
+                    AND click_num = #{map.clickNum}
+                </if>
+                <if test="defaultContent !=null">
+                    AND default_content = #{map.defaultContent}
+                </if>
+            </where>
+        </if>
+    </sql>
+
+         <!-- 通用查询映射结果 -->
+    <resultMap id="advPositionMap" type="com.hzitxx.hitao.entity.AdvPosition">
+            <id column="ap_id" property="apId"/>
+            <result column="ap_name" property="apName"/>
+            <result column="ap_intro" property="apIntro"/>
+            <result column="ap_class" property="apClass"/>
+            <result column="ap_display" property="apDisplay"/>
+            <result column="is_use" property="isUse"/>
+            <result column="ap_width" property="apWidth"/>
+            <result column="ap_height" property="apHeight"/>
+            <result column="ap_price" property="apPrice"/>
+            <result column="adv_num" property="advNum"/>
+            <result column="click_num" property="clickNum"/>
+            <result column="default_content" property="defaultContent"/>
+     </resultMap>
+</mapper>

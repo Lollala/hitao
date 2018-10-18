@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.hitao.mapper.RefundReturnMapper">
+    <!--shop_refund_return表中的列-->
+    <sql id="refundReturnBaseColumn">
+         refund_id,
+         order_id,
+         refund_sn,
+         buyer_id,
+         buyer_name,
+         goods_id,
+         order_goods_id,
+         goods_name,
+         goods_num,
+         refund_amount,
+         goods_image,
+         order_goods_type,
+         refund_type,
+         seller_state,
+         refund_state,
+         return_type,
+         order_lock,
+         goods_state,
+         add_time,
+         seller_time,
+         admin_time,
+         buyer_message,
+         seller_message,
+         admin_message,
+         express_id,
+         invoice_no,
+         ship_time,
+         delay_time,
+         receive_time,
+         receive_message,
+         commis_rate,
+         is_del,
+         created_time,
+         updated_time
+    </sql>
+
+
+    <!--添加-->
+    <insert id="addRefundReturn" parameterType="com.hzitxx.hitao.entity.RefundReturn">
+        INSERT INTO shop_refund_return(
+            <include refid="refundReturnBaseColumn"/>
+        ) VALUES(
+                #{refundId},
+                #{orderId},
+                #{refundSn},
+                #{buyerId},
+                #{buyerName},
+                #{goodsId},
+                #{orderGoodsId},
+                #{goodsName},
+                #{goodsNum},
+                #{refundAmount},
+                #{goodsImage},
+                #{orderGoodsType},
+                #{refundType},
+                #{sellerState},
+                #{refundState},
+                #{returnType},
+                #{orderLock},
+                #{goodsState},
+                #{addTime},
+                #{sellerTime},
+                #{adminTime},
+                #{buyerMessage},
+                #{sellerMessage},
+                #{adminMessage},
+                #{expressId},
+                #{invoiceNo},
+                #{shipTime},
+                #{delayTime},
+                #{receiveTime},
+                #{receiveMessage},
+                #{commisRate},
+                #{isDel},
+                #{createdTime},
+                #{updatedTime}
+        )
+    </insert>
+    <insert id="addRefundReturnSelective" parameterType="com.hzitxx.hitao.entity.RefundReturn">
+        insert into shop_refund_return
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="refundId != null">
+                refund_id,
+            </if>
+            <if test="orderId != null">
+                order_id,
+            </if>
+            <if test="refundSn != null">
+                refund_sn,
+            </if>
+            <if test="buyerId != null">
+                buyer_id,
+            </if>
+            <if test="buyerName != null">
+                buyer_name,
+            </if>
+            <if test="goodsId != null">
+                goods_id,
+            </if>
+            <if test="orderGoodsId != null">
+                order_goods_id,
+            </if>
+            <if test="goodsName != null">
+                goods_name,
+            </if>
+            <if test="goodsNum != null">
+                goods_num,
+            </if>
+            <if test="refundAmount != null">
+                refund_amount,
+            </if>
+            <if test="goodsImage != null">
+                goods_image,
+            </if>
+            <if test="orderGoodsType != null">
+                order_goods_type,
+            </if>
+            <if test="refundType != null">
+                refund_type,
+            </if>
+            <if test="sellerState != null">
+                seller_state,
+            </if>
+            <if test="refundState != null">
+                refund_state,
+            </if>
+            <if test="returnType != null">
+                return_type,
+            </if>
+            <if test="orderLock != null">
+                order_lock,
+            </if>
+            <if test="goodsState != null">
+                goods_state,
+            </if>
+            <if test="addTime != null">
+                add_time,
+            </if>
+            <if test="sellerTime != null">
+                seller_time,
+            </if>
+            <if test="adminTime != null">
+                admin_time,
+            </if>
+            <if test="buyerMessage != null">
+                buyer_message,
+            </if>
+            <if test="sellerMessage != null">
+                seller_message,
+            </if>
+            <if test="adminMessage != null">
+                admin_message,
+            </if>
+            <if test="expressId != null">
+                express_id,
+            </if>
+            <if test="invoiceNo != null">
+                invoice_no,
+            </if>
+            <if test="shipTime != null">
+                ship_time,
+            </if>
+            <if test="delayTime != null">
+                delay_time,
+            </if>
+            <if test="receiveTime != null">
+                receive_time,
+            </if>
+            <if test="receiveMessage != null">
+                receive_message,
+            </if>
+            <if test="commisRate != null">
+                commis_rate,
+            </if>
+            <if test="isDel != null">
+                is_del,
+            </if>
+            <if test="createdTime != null">
+                created_time,
+            </if>
+            <if test="updatedTime != null">
+                updated_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="refundId != null">
+                #{refundId},
+            </if>
+            <if test="orderId != null">
+                #{orderId},
+            </if>
+            <if test="refundSn != null">
+                #{refundSn},
+            </if>
+            <if test="buyerId != null">
+                #{buyerId},
+            </if>
+            <if test="buyerName != null">
+                #{buyerName},
+            </if>
+            <if test="goodsId != null">
+                #{goodsId},
+            </if>
+            <if test="orderGoodsId != null">
+                #{orderGoodsId},
+            </if>
+            <if test="goodsName != null">
+                #{goodsName},
+            </if>
+            <if test="goodsNum != null">
+                #{goodsNum},
+            </if>
+            <if test="refundAmount != null">
+                #{refundAmount},
+            </if>
+            <if test="goodsImage != null">
+                #{goodsImage},
+            </if>
+            <if test="orderGoodsType != null">
+                #{orderGoodsType},
+            </if>
+            <if test="refundType != null">
+                #{refundType},
+            </if>
+            <if test="sellerState != null">
+                #{sellerState},
+            </if>
+            <if test="refundState != null">
+                #{refundState},
+            </if>
+            <if test="returnType != null">
+                #{returnType},
+            </if>
+            <if test="orderLock != null">
+                #{orderLock},
+            </if>
+            <if test="goodsState != null">
+                #{goodsState},
+            </if>
+            <if test="addTime != null">
+                #{addTime},
+            </if>
+            <if test="sellerTime != null">
+                #{sellerTime},
+            </if>
+            <if test="adminTime != null">
+                #{adminTime},
+            </if>
+            <if test="buyerMessage != null">
+                #{buyerMessage},
+            </if>
+            <if test="sellerMessage != null">
+                #{sellerMessage},
+            </if>
+            <if test="adminMessage != null">
+                #{adminMessage},
+            </if>
+            <if test="expressId != null">
+                #{expressId},
+            </if>
+            <if test="invoiceNo != null">
+                #{invoiceNo},
+            </if>
+            <if test="shipTime != null">
+                #{shipTime},
+            </if>
+            <if test="delayTime != null">
+                #{delayTime},
+            </if>
+            <if test="receiveTime != null">
+                #{receiveTime},
+            </if>
+            <if test="receiveMessage != null">
+                #{receiveMessage},
+            </if>
+            <if test="commisRate != null">
+                #{commisRate},
+            </if>
+            <if test="isDel != null">
+                #{isDel},
+            </if>
+            <if test="createdTime != null">
+                #{createdTime},
+            </if>
+            <if test="updatedTime != null">
+                #{updatedTime},
+            </if>
+        </trim>
+    </insert>
+    <!--根据id删除数据-->
+    <delete id="deleteById" parameterType="integer">
+        DELETE FROM  shop_refund_return WHERE
+        refund_id = #{refundId}
+    </delete>
+
+    <!--根据id批量删除数据-->
+    <delete id="deleteByIds" parameterType="java.lang.String">
+          delete FROM  shop_refund_return WHERE refund_id in
+          <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+          </foreach>
+    </delete>
+    <!--根据id修改数据-->
+    <update id="updateById" parameterType="com.hzitxx.hitao.entity.RefundReturn">
+        UPDATE shop_refund_return
+        <set>
+          refund_id=#{refundId},
+          order_id=#{orderId},
+          refund_sn=#{refundSn},
+          buyer_id=#{buyerId},
+          buyer_name=#{buyerName},
+          goods_id=#{goodsId},
+          order_goods_id=#{orderGoodsId},
+          goods_name=#{goodsName},
+          goods_num=#{goodsNum},
+          refund_amount=#{refundAmount},
+          goods_image=#{goodsImage},
+          order_goods_type=#{orderGoodsType},
+          refund_type=#{refundType},
+          seller_state=#{sellerState},
+          refund_state=#{refundState},
+          return_type=#{returnType},
+          order_lock=#{orderLock},
+          goods_state=#{goodsState},
+          add_time=#{addTime},
+          seller_time=#{sellerTime},
+          admin_time=#{adminTime},
+          buyer_message=#{buyerMessage},
+          seller_message=#{sellerMessage},
+          admin_message=#{adminMessage},
+          express_id=#{expressId},
+          invoice_no=#{invoiceNo},
+          ship_time=#{shipTime},
+          delay_time=#{delayTime},
+          receive_time=#{receiveTime},
+          receive_message=#{receiveMessage},
+          commis_rate=#{commisRate},
+          is_del=#{isDel},
+          created_time=#{createdTime},
+          updated_time=#{updatedTime}
+        </set>
+        WHERE
+           refund_id = #{refundId}
+    </update>
+
+    <update id="updateSelectiveById" parameterType="com.hzitxx.hitao.entity.RefundReturn">
+        UPDATE shop_refund_return
+        <set>
+    <if test="refundId != null">
+          refund_id = #{refundId},
+    </if>
+    <if test="orderId != null">
+          order_id = #{orderId},
+    </if>
+    <if test="refundSn != null">
+          refund_sn = #{refundSn},
+    </if>
+    <if test="buyerId != null">
+          buyer_id = #{buyerId},
+    </if>
+    <if test="buyerName != null">
+          buyer_name = #{buyerName},
+    </if>
+    <if test="goodsId != null">
+          goods_id = #{goodsId},
+    </if>
+    <if test="orderGoodsId != null">
+          order_goods_id = #{orderGoodsId},
+    </if>
+    <if test="goodsName != null">
+          goods_name = #{goodsName},
+    </if>
+    <if test="goodsNum != null">
+          goods_num = #{goodsNum},
+    </if>
+    <if test="refundAmount != null">
+          refund_amount = #{refundAmount},
+    </if>
+    <if test="goodsImage != null">
+          goods_image = #{goodsImage},
+    </if>
+    <if test="orderGoodsType != null">
+          order_goods_type = #{orderGoodsType},
+    </if>
+    <if test="refundType != null">
+          refund_type = #{refundType},
+    </if>
+    <if test="sellerState != null">
+          seller_state = #{sellerState},
+    </if>
+    <if test="refundState != null">
+          refund_state = #{refundState},
+    </if>
+    <if test="returnType != null">
+          return_type = #{returnType},
+    </if>
+    <if test="orderLock != null">
+          order_lock = #{orderLock},
+    </if>
+    <if test="goodsState != null">
+          goods_state = #{goodsState},
+    </if>
+    <if test="addTime != null">
+          add_time = #{addTime},
+    </if>
+    <if test="sellerTime != null">
+          seller_time = #{sellerTime},
+    </if>
+    <if test="adminTime != null">
+          admin_time = #{adminTime},
+    </if>
+    <if test="buyerMessage != null">
+          buyer_message = #{buyerMessage},
+    </if>
+    <if test="sellerMessage != null">
+          seller_message = #{sellerMessage},
+    </if>
+    <if test="adminMessage != null">
+          admin_message = #{adminMessage},
+    </if>
+    <if test="expressId != null">
+          express_id = #{expressId},
+    </if>
+    <if test="invoiceNo != null">
+          invoice_no = #{invoiceNo},
+    </if>
+    <if test="shipTime != null">
+          ship_time = #{shipTime},
+    </if>
+    <if test="delayTime != null">
+          delay_time = #{delayTime},
+    </if>
+    <if test="receiveTime != null">
+          receive_time = #{receiveTime},
+    </if>
+    <if test="receiveMessage != null">
+          receive_message = #{receiveMessage},
+    </if>
+    <if test="commisRate != null">
+          commis_rate = #{commisRate},
+    </if>
+    <if test="isDel != null">
+          is_del = #{isDel},
+    </if>
+    <if test="createdTime != null">
+          created_time = #{createdTime},
+    </if>
+    <if test="updatedTime != null">
+          updated_time = #{updatedTime},
+    </if>
+    </set>
+        WHERE
+      refund_id = #{refundId}
+    </update>
+    <!--根据id查询一条数据-->
+    <select id="findOne" resultMap="refundReturnMap" parameterType="integer">
+        select
+        <include refid="refundReturnBaseColumn"/>
+        from
+            shop_refund_return
+        WHERE
+          refund_id = #{refundId}
+    </select>
+    <!--查询数据-->
+    <select id="searchRefundReturn" parameterType="map" resultMap="refundReturnMap">
+        SELECT
+        <include refid="refundReturnBaseColumn"/>
+        FROM shop_refund_return
+        <include refid="refundReturnBaseWhereSql"/>
+    </select>
+    <!--基础查询条件-->
+    <sql id="refundReturnBaseWhereSql">
+        <if test="map!=null">
+            <where>
+                <if test="refundId !=null">
+                    AND refund_id = #{map.refundId}
+                </if>
+                <if test="orderId !=null">
+                    AND order_id = #{map.orderId}
+                </if>
+                <if test="refundSn !=null">
+                    AND refund_sn = #{map.refundSn}
+                </if>
+                <if test="buyerId !=null">
+                    AND buyer_id = #{map.buyerId}
+                </if>
+                <if test="buyerName !=null">
+                    AND buyer_name = #{map.buyerName}
+                </if>
+                <if test="goodsId !=null">
+                    AND goods_id = #{map.goodsId}
+                </if>
+                <if test="orderGoodsId !=null">
+                    AND order_goods_id = #{map.orderGoodsId}
+                </if>
+                <if test="goodsName !=null">
+                    AND goods_name = #{map.goodsName}
+                </if>
+                <if test="goodsNum !=null">
+                    AND goods_num = #{map.goodsNum}
+                </if>
+                <if test="refundAmount !=null">
+                    AND refund_amount = #{map.refundAmount}
+                </if>
+                <if test="goodsImage !=null">
+                    AND goods_image = #{map.goodsImage}
+                </if>
+                <if test="orderGoodsType !=null">
+                    AND order_goods_type = #{map.orderGoodsType}
+                </if>
+                <if test="refundType !=null">
+                    AND refund_type = #{map.refundType}
+                </if>
+                <if test="sellerState !=null">
+                    AND seller_state = #{map.sellerState}
+                </if>
+                <if test="refundState !=null">
+                    AND refund_state = #{map.refundState}
+                </if>
+                <if test="returnType !=null">
+                    AND return_type = #{map.returnType}
+                </if>
+                <if test="orderLock !=null">
+                    AND order_lock = #{map.orderLock}
+                </if>
+                <if test="goodsState !=null">
+                    AND goods_state = #{map.goodsState}
+                </if>
+                <if test="addTime !=null">
+                    AND add_time = #{map.addTime}
+                </if>
+                <if test="sellerTime !=null">
+                    AND seller_time = #{map.sellerTime}
+                </if>
+                <if test="adminTime !=null">
+                    AND admin_time = #{map.adminTime}
+                </if>
+                <if test="buyerMessage !=null">
+                    AND buyer_message = #{map.buyerMessage}
+                </if>
+                <if test="sellerMessage !=null">
+                    AND seller_message = #{map.sellerMessage}
+                </if>
+                <if test="adminMessage !=null">
+                    AND admin_message = #{map.adminMessage}
+                </if>
+                <if test="expressId !=null">
+                    AND express_id = #{map.expressId}
+                </if>
+                <if test="invoiceNo !=null">
+                    AND invoice_no = #{map.invoiceNo}
+                </if>
+                <if test="shipTime !=null">
+                    AND ship_time = #{map.shipTime}
+                </if>
+                <if test="delayTime !=null">
+                    AND delay_time = #{map.delayTime}
+                </if>
+                <if test="receiveTime !=null">
+                    AND receive_time = #{map.receiveTime}
+                </if>
+                <if test="receiveMessage !=null">
+                    AND receive_message = #{map.receiveMessage}
+                </if>
+                <if test="commisRate !=null">
+                    AND commis_rate = #{map.commisRate}
+                </if>
+                <if test="isDel !=null">
+                    AND is_del = #{map.isDel}
+                </if>
+                <if test="createdTime !=null">
+                    AND created_time = #{map.createdTime}
+                </if>
+                <if test="updatedTime !=null">
+                    AND updated_time = #{map.updatedTime}
+                </if>
+            </where>
+        </if>
+    </sql>
+
+         <!-- 通用查询映射结果 -->
+    <resultMap id="refundReturnMap" type="com.hzitxx.hitao.entity.RefundReturn">
+            <id column="refund_id" property="refundId"/>
+            <result column="order_id" property="orderId"/>
+            <result column="refund_sn" property="refundSn"/>
+            <result column="buyer_id" property="buyerId"/>
+            <result column="buyer_name" property="buyerName"/>
+            <result column="goods_id" property="goodsId"/>
+            <result column="order_goods_id" property="orderGoodsId"/>
+            <result column="goods_name" property="goodsName"/>
+            <result column="goods_num" property="goodsNum"/>
+            <result column="refund_amount" property="refundAmount"/>
+            <result column="goods_image" property="goodsImage"/>
+            <result column="order_goods_type" property="orderGoodsType"/>
+            <result column="refund_type" property="refundType"/>
+            <result column="seller_state" property="sellerState"/>
+            <result column="refund_state" property="refundState"/>
+            <result column="return_type" property="returnType"/>
+            <result column="order_lock" property="orderLock"/>
+            <result column="goods_state" property="goodsState"/>
+            <result column="add_time" property="addTime"/>
+            <result column="seller_time" property="sellerTime"/>
+            <result column="admin_time" property="adminTime"/>
+            <result column="buyer_message" property="buyerMessage"/>
+            <result column="seller_message" property="sellerMessage"/>
+            <result column="admin_message" property="adminMessage"/>
+            <result column="express_id" property="expressId"/>
+            <result column="invoice_no" property="invoiceNo"/>
+            <result column="ship_time" property="shipTime"/>
+            <result column="delay_time" property="delayTime"/>
+            <result column="receive_time" property="receiveTime"/>
+            <result column="receive_message" property="receiveMessage"/>
+            <result column="commis_rate" property="commisRate"/>
+            <result column="is_del" property="isDel"/>
+            <result column="created_time" property="createdTime"/>
+            <result column="updated_time" property="updatedTime"/>
+     </resultMap>
+</mapper>

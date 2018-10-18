@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.hitao.mapper.TransportExtendMapper">
+    <!--shop_transport_extend表中的列-->
+    <sql id="transportExtendBaseColumn">
+         id,
+         area_id,
+         top_area_id,
+         area_name,
+         snum,
+         sprice,
+         xnum,
+         xprice,
+         is_default,
+         transport_id,
+         transport_title,
+         is_del,
+         created_time,
+         updated_time
+    </sql>
+
+
+    <!--添加-->
+    <insert id="addTransportExtend" parameterType="com.hzitxx.hitao.entity.TransportExtend">
+        INSERT INTO shop_transport_extend(
+            <include refid="transportExtendBaseColumn"/>
+        ) VALUES(
+                #{id},
+                #{areaId},
+                #{topAreaId},
+                #{areaName},
+                #{snum},
+                #{sprice},
+                #{xnum},
+                #{xprice},
+                #{isDefault},
+                #{transportId},
+                #{transportTitle},
+                #{isDel},
+                #{createdTime},
+                #{updatedTime}
+        )
+    </insert>
+    <insert id="addTransportExtendSelective" parameterType="com.hzitxx.hitao.entity.TransportExtend">
+        insert into shop_transport_extend
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="areaId != null">
+                area_id,
+            </if>
+            <if test="topAreaId != null">
+                top_area_id,
+            </if>
+            <if test="areaName != null">
+                area_name,
+            </if>
+            <if test="snum != null">
+                snum,
+            </if>
+            <if test="sprice != null">
+                sprice,
+            </if>
+            <if test="xnum != null">
+                xnum,
+            </if>
+            <if test="xprice != null">
+                xprice,
+            </if>
+            <if test="isDefault != null">
+                is_default,
+            </if>
+            <if test="transportId != null">
+                transport_id,
+            </if>
+            <if test="transportTitle != null">
+                transport_title,
+            </if>
+            <if test="isDel != null">
+                is_del,
+            </if>
+            <if test="createdTime != null">
+                created_time,
+            </if>
+            <if test="updatedTime != null">
+                updated_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="areaId != null">
+                #{areaId},
+            </if>
+            <if test="topAreaId != null">
+                #{topAreaId},
+            </if>
+            <if test="areaName != null">
+                #{areaName},
+            </if>
+            <if test="snum != null">
+                #{snum},
+            </if>
+            <if test="sprice != null">
+                #{sprice},
+            </if>
+            <if test="xnum != null">
+                #{xnum},
+            </if>
+            <if test="xprice != null">
+                #{xprice},
+            </if>
+            <if test="isDefault != null">
+                #{isDefault},
+            </if>
+            <if test="transportId != null">
+                #{transportId},
+            </if>
+            <if test="transportTitle != null">
+                #{transportTitle},
+            </if>
+            <if test="isDel != null">
+                #{isDel},
+            </if>
+            <if test="createdTime != null">
+                #{createdTime},
+            </if>
+            <if test="updatedTime != null">
+                #{updatedTime},
+            </if>
+        </trim>
+    </insert>
+    <!--根据id删除数据-->
+    <delete id="deleteById" parameterType="integer">
+        DELETE FROM  shop_transport_extend WHERE
+        id = #{id}
+    </delete>
+
+    <!--根据id批量删除数据-->
+    <delete id="deleteByIds" parameterType="java.lang.String">
+          delete FROM  shop_transport_extend WHERE id in
+          <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+          </foreach>
+    </delete>
+    <!--根据id修改数据-->
+    <update id="updateById" parameterType="com.hzitxx.hitao.entity.TransportExtend">
+        UPDATE shop_transport_extend
+        <set>
+          id=#{id},
+          area_id=#{areaId},
+          top_area_id=#{topAreaId},
+          area_name=#{areaName},
+          snum=#{snum},
+          sprice=#{sprice},
+          xnum=#{xnum},
+          xprice=#{xprice},
+          is_default=#{isDefault},
+          transport_id=#{transportId},
+          transport_title=#{transportTitle},
+          is_del=#{isDel},
+          created_time=#{createdTime},
+          updated_time=#{updatedTime}
+        </set>
+        WHERE
+           id = #{id}
+    </update>
+
+    <update id="updateSelectiveById" parameterType="com.hzitxx.hitao.entity.TransportExtend">
+        UPDATE shop_transport_extend
+        <set>
+    <if test="id != null">
+          id = #{id},
+    </if>
+    <if test="areaId != null">
+          area_id = #{areaId},
+    </if>
+    <if test="topAreaId != null">
+          top_area_id = #{topAreaId},
+    </if>
+    <if test="areaName != null">
+          area_name = #{areaName},
+    </if>
+    <if test="snum != null">
+          snum = #{snum},
+    </if>
+    <if test="sprice != null">
+          sprice = #{sprice},
+    </if>
+    <if test="xnum != null">
+          xnum = #{xnum},
+    </if>
+    <if test="xprice != null">
+          xprice = #{xprice},
+    </if>
+    <if test="isDefault != null">
+          is_default = #{isDefault},
+    </if>
+    <if test="transportId != null">
+          transport_id = #{transportId},
+    </if>
+    <if test="transportTitle != null">
+          transport_title = #{transportTitle},
+    </if>
+    <if test="isDel != null">
+          is_del = #{isDel},
+    </if>
+    <if test="createdTime != null">
+          created_time = #{createdTime},
+    </if>
+    <if test="updatedTime != null">
+          updated_time = #{updatedTime},
+    </if>
+    </set>
+        WHERE
+      id = #{id}
+    </update>
+    <!--根据id查询一条数据-->
+    <select id="findOne" resultMap="transportExtendMap" parameterType="integer">
+        select
+        <include refid="transportExtendBaseColumn"/>
+        from
+            shop_transport_extend
+        WHERE
+          id = #{id}
+    </select>
+    <!--查询数据-->
+    <select id="searchTransportExtend" parameterType="map" resultMap="transportExtendMap">
+        SELECT
+        <include refid="transportExtendBaseColumn"/>
+        FROM shop_transport_extend
+        <include refid="transportExtendBaseWhereSql"/>
+    </select>
+    <!--基础查询条件-->
+    <sql id="transportExtendBaseWhereSql">
+        <if test="map!=null">
+            <where>
+                <if test="id !=null">
+                    AND id = #{map.id}
+                </if>
+                <if test="areaId !=null">
+                    AND area_id = #{map.areaId}
+                </if>
+                <if test="topAreaId !=null">
+                    AND top_area_id = #{map.topAreaId}
+                </if>
+                <if test="areaName !=null">
+                    AND area_name = #{map.areaName}
+                </if>
+                <if test="snum !=null">
+                    AND snum = #{map.snum}
+                </if>
+                <if test="sprice !=null">
+                    AND sprice = #{map.sprice}
+                </if>
+                <if test="xnum !=null">
+                    AND xnum = #{map.xnum}
+                </if>
+                <if test="xprice !=null">
+                    AND xprice = #{map.xprice}
+                </if>
+                <if test="isDefault !=null">
+                    AND is_default = #{map.isDefault}
+                </if>
+                <if test="transportId !=null">
+                    AND transport_id = #{map.transportId}
+                </if>
+                <if test="transportTitle !=null">
+                    AND transport_title = #{map.transportTitle}
+                </if>
+                <if test="isDel !=null">
+                    AND is_del = #{map.isDel}
+                </if>
+                <if test="createdTime !=null">
+                    AND created_time = #{map.createdTime}
+                </if>
+                <if test="updatedTime !=null">
+                    AND updated_time = #{map.updatedTime}
+                </if>
+            </where>
+        </if>
+    </sql>
+
+         <!-- 通用查询映射结果 -->
+    <resultMap id="transportExtendMap" type="com.hzitxx.hitao.entity.TransportExtend">
+            <id column="id" property="id"/>
+            <result column="area_id" property="areaId"/>
+            <result column="top_area_id" property="topAreaId"/>
+            <result column="area_name" property="areaName"/>
+            <result column="snum" property="snum"/>
+            <result column="sprice" property="sprice"/>
+            <result column="xnum" property="xnum"/>
+            <result column="xprice" property="xprice"/>
+            <result column="is_default" property="isDefault"/>
+            <result column="transport_id" property="transportId"/>
+            <result column="transport_title" property="transportTitle"/>
+            <result column="is_del" property="isDel"/>
+            <result column="created_time" property="createdTime"/>
+            <result column="updated_time" property="updatedTime"/>
+     </resultMap>
+</mapper>

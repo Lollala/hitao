@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.hitao.mapper.OrderCommonMapper">
+    <!--shop_order_common表中的列-->
+    <sql id="orderCommonBaseColumn">
+         order_id,
+         shipping_time,
+         shipping_express_id,
+         evaluation_time,
+         evalseller_state,
+         evalseller_time,
+         order_message,
+         order_pointscount,
+         voucher_price,
+         voucher_code,
+         deliver_explain,
+         daddress_id,
+         reciver_name,
+         reciver_info,
+         reciver_province_id,
+         invoice_info,
+         promotion_info
+    </sql>
+
+
+    <!--添加-->
+    <insert id="addOrderCommon" parameterType="com.hzitxx.hitao.entity.OrderCommon">
+        INSERT INTO shop_order_common(
+            <include refid="orderCommonBaseColumn"/>
+        ) VALUES(
+                #{orderId},
+                #{shippingTime},
+                #{shippingExpressId},
+                #{evaluationTime},
+                #{evalsellerState},
+                #{evalsellerTime},
+                #{orderMessage},
+                #{orderPointscount},
+                #{voucherPrice},
+                #{voucherCode},
+                #{deliverExplain},
+                #{daddressId},
+                #{reciverName},
+                #{reciverInfo},
+                #{reciverProvinceId},
+                #{invoiceInfo},
+                #{promotionInfo}
+        )
+    </insert>
+    <insert id="addOrderCommonSelective" parameterType="com.hzitxx.hitao.entity.OrderCommon">
+        insert into shop_order_common
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">
+                order_id,
+            </if>
+            <if test="shippingTime != null">
+                shipping_time,
+            </if>
+            <if test="shippingExpressId != null">
+                shipping_express_id,
+            </if>
+            <if test="evaluationTime != null">
+                evaluation_time,
+            </if>
+            <if test="evalsellerState != null">
+                evalseller_state,
+            </if>
+            <if test="evalsellerTime != null">
+                evalseller_time,
+            </if>
+            <if test="orderMessage != null">
+                order_message,
+            </if>
+            <if test="orderPointscount != null">
+                order_pointscount,
+            </if>
+            <if test="voucherPrice != null">
+                voucher_price,
+            </if>
+            <if test="voucherCode != null">
+                voucher_code,
+            </if>
+            <if test="deliverExplain != null">
+                deliver_explain,
+            </if>
+            <if test="daddressId != null">
+                daddress_id,
+            </if>
+            <if test="reciverName != null">
+                reciver_name,
+            </if>
+            <if test="reciverInfo != null">
+                reciver_info,
+            </if>
+            <if test="reciverProvinceId != null">
+                reciver_province_id,
+            </if>
+            <if test="invoiceInfo != null">
+                invoice_info,
+            </if>
+            <if test="promotionInfo != null">
+                promotion_info,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">
+                #{orderId},
+            </if>
+            <if test="shippingTime != null">
+                #{shippingTime},
+            </if>
+            <if test="shippingExpressId != null">
+                #{shippingExpressId},
+            </if>
+            <if test="evaluationTime != null">
+                #{evaluationTime},
+            </if>
+            <if test="evalsellerState != null">
+                #{evalsellerState},
+            </if>
+            <if test="evalsellerTime != null">
+                #{evalsellerTime},
+            </if>
+            <if test="orderMessage != null">
+                #{orderMessage},
+            </if>
+            <if test="orderPointscount != null">
+                #{orderPointscount},
+            </if>
+            <if test="voucherPrice != null">
+                #{voucherPrice},
+            </if>
+            <if test="voucherCode != null">
+                #{voucherCode},
+            </if>
+            <if test="deliverExplain != null">
+                #{deliverExplain},
+            </if>
+            <if test="daddressId != null">
+                #{daddressId},
+            </if>
+            <if test="reciverName != null">
+                #{reciverName},
+            </if>
+            <if test="reciverInfo != null">
+                #{reciverInfo},
+            </if>
+            <if test="reciverProvinceId != null">
+                #{reciverProvinceId},
+            </if>
+            <if test="invoiceInfo != null">
+                #{invoiceInfo},
+            </if>
+            <if test="promotionInfo != null">
+                #{promotionInfo},
+            </if>
+        </trim>
+    </insert>
+    <!--根据id删除数据-->
+    <delete id="deleteById" parameterType="integer">
+        DELETE FROM  shop_order_common WHERE
+        order_id = #{orderId}
+    </delete>
+
+    <!--根据id批量删除数据-->
+    <delete id="deleteByIds" parameterType="java.lang.String">
+          delete FROM  shop_order_common WHERE order_id in
+          <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+          </foreach>
+    </delete>
+    <!--根据id修改数据-->
+    <update id="updateById" parameterType="com.hzitxx.hitao.entity.OrderCommon">
+        UPDATE shop_order_common
+        <set>
+          order_id=#{orderId},
+          shipping_time=#{shippingTime},
+          shipping_express_id=#{shippingExpressId},
+          evaluation_time=#{evaluationTime},
+          evalseller_state=#{evalsellerState},
+          evalseller_time=#{evalsellerTime},
+          order_message=#{orderMessage},
+          order_pointscount=#{orderPointscount},
+          voucher_price=#{voucherPrice},
+          voucher_code=#{voucherCode},
+          deliver_explain=#{deliverExplain},
+          daddress_id=#{daddressId},
+          reciver_name=#{reciverName},
+          reciver_info=#{reciverInfo},
+          reciver_province_id=#{reciverProvinceId},
+          invoice_info=#{invoiceInfo},
+          promotion_info=#{promotionInfo}
+        </set>
+        WHERE
+           order_id = #{orderId}
+    </update>
+
+    <update id="updateSelectiveById" parameterType="com.hzitxx.hitao.entity.OrderCommon">
+        UPDATE shop_order_common
+        <set>
+    <if test="orderId != null">
+          order_id = #{orderId},
+    </if>
+    <if test="shippingTime != null">
+          shipping_time = #{shippingTime},
+    </if>
+    <if test="shippingExpressId != null">
+          shipping_express_id = #{shippingExpressId},
+    </if>
+    <if test="evaluationTime != null">
+          evaluation_time = #{evaluationTime},
+    </if>
+    <if test="evalsellerState != null">
+          evalseller_state = #{evalsellerState},
+    </if>
+    <if test="evalsellerTime != null">
+          evalseller_time = #{evalsellerTime},
+    </if>
+    <if test="orderMessage != null">
+          order_message = #{orderMessage},
+    </if>
+    <if test="orderPointscount != null">
+          order_pointscount = #{orderPointscount},
+    </if>
+    <if test="voucherPrice != null">
+          voucher_price = #{voucherPrice},
+    </if>
+    <if test="voucherCode != null">
+          voucher_code = #{voucherCode},
+    </if>
+    <if test="deliverExplain != null">
+          deliver_explain = #{deliverExplain},
+    </if>
+    <if test="daddressId != null">
+          daddress_id = #{daddressId},
+    </if>
+    <if test="reciverName != null">
+          reciver_name = #{reciverName},
+    </if>
+    <if test="reciverInfo != null">
+          reciver_info = #{reciverInfo},
+    </if>
+    <if test="reciverProvinceId != null">
+          reciver_province_id = #{reciverProvinceId},
+    </if>
+    <if test="invoiceInfo != null">
+          invoice_info = #{invoiceInfo},
+    </if>
+    <if test="promotionInfo != null">
+          promotion_info = #{promotionInfo},
+    </if>
+    </set>
+        WHERE
+      order_id = #{orderId}
+    </update>
+    <!--根据id查询一条数据-->
+    <select id="findOne" resultMap="orderCommonMap" parameterType="integer">
+        select
+        <include refid="orderCommonBaseColumn"/>
+        from
+            shop_order_common
+        WHERE
+          order_id = #{orderId}
+    </select>
+    <!--查询数据-->
+    <select id="searchOrderCommon" parameterType="map" resultMap="orderCommonMap">
+        SELECT
+        <include refid="orderCommonBaseColumn"/>
+        FROM shop_order_common
+        <include refid="orderCommonBaseWhereSql"/>
+    </select>
+    <!--基础查询条件-->
+    <sql id="orderCommonBaseWhereSql">
+        <if test="map!=null">
+            <where>
+                <if test="orderId !=null">
+                    AND order_id = #{map.orderId}
+                </if>
+                <if test="shippingTime !=null">
+                    AND shipping_time = #{map.shippingTime}
+                </if>
+                <if test="shippingExpressId !=null">
+                    AND shipping_express_id = #{map.shippingExpressId}
+                </if>
+                <if test="evaluationTime !=null">
+                    AND evaluation_time = #{map.evaluationTime}
+                </if>
+                <if test="evalsellerState !=null">
+                    AND evalseller_state = #{map.evalsellerState}
+                </if>
+                <if test="evalsellerTime !=null">
+                    AND evalseller_time = #{map.evalsellerTime}
+                </if>
+                <if test="orderMessage !=null">
+                    AND order_message = #{map.orderMessage}
+                </if>
+                <if test="orderPointscount !=null">
+                    AND order_pointscount = #{map.orderPointscount}
+                </if>
+                <if test="voucherPrice !=null">
+                    AND voucher_price = #{map.voucherPrice}
+                </if>
+                <if test="voucherCode !=null">
+                    AND voucher_code = #{map.voucherCode}
+                </if>
+                <if test="deliverExplain !=null">
+                    AND deliver_explain = #{map.deliverExplain}
+                </if>
+                <if test="daddressId !=null">
+                    AND daddress_id = #{map.daddressId}
+                </if>
+                <if test="reciverName !=null">
+                    AND reciver_name = #{map.reciverName}
+                </if>
+                <if test="reciverInfo !=null">
+                    AND reciver_info = #{map.reciverInfo}
+                </if>
+                <if test="reciverProvinceId !=null">
+                    AND reciver_province_id = #{map.reciverProvinceId}
+                </if>
+                <if test="invoiceInfo !=null">
+                    AND invoice_info = #{map.invoiceInfo}
+                </if>
+                <if test="promotionInfo !=null">
+                    AND promotion_info = #{map.promotionInfo}
+                </if>
+            </where>
+        </if>
+    </sql>
+
+         <!-- 通用查询映射结果 -->
+    <resultMap id="orderCommonMap" type="com.hzitxx.hitao.entity.OrderCommon">
+            <id column="order_id" property="orderId"/>
+            <result column="shipping_time" property="shippingTime"/>
+            <result column="shipping_express_id" property="shippingExpressId"/>
+            <result column="evaluation_time" property="evaluationTime"/>
+            <result column="evalseller_state" property="evalsellerState"/>
+            <result column="evalseller_time" property="evalsellerTime"/>
+            <result column="order_message" property="orderMessage"/>
+            <result column="order_pointscount" property="orderPointscount"/>
+            <result column="voucher_price" property="voucherPrice"/>
+            <result column="voucher_code" property="voucherCode"/>
+            <result column="deliver_explain" property="deliverExplain"/>
+            <result column="daddress_id" property="daddressId"/>
+            <result column="reciver_name" property="reciverName"/>
+            <result column="reciver_info" property="reciverInfo"/>
+            <result column="reciver_province_id" property="reciverProvinceId"/>
+            <result column="invoice_info" property="invoiceInfo"/>
+            <result column="promotion_info" property="promotionInfo"/>
+     </resultMap>
+</mapper>

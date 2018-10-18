@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.hitao.mapper.StatMemberMapper">
+    <!--shop_stat_member表中的列-->
+    <sql id="statMemberBaseColumn">
+         statm_id,
+         statm_memberid,
+         statm_membername,
+         statm_time,
+         statm_ordernum,
+         statm_orderamount,
+         statm_goodsnum,
+         statm_predincrease,
+         statm_predreduce,
+         statm_pointsincrease,
+         statm_pointsreduce,
+         statm_updatetime
+    </sql>
+
+
+    <!--添加-->
+    <insert id="addStatMember" parameterType="com.hzitxx.hitao.entity.StatMember">
+        INSERT INTO shop_stat_member(
+            <include refid="statMemberBaseColumn"/>
+        ) VALUES(
+                #{statmId},
+                #{statmMemberid},
+                #{statmMembername},
+                #{statmTime},
+                #{statmOrdernum},
+                #{statmOrderamount},
+                #{statmGoodsnum},
+                #{statmPredincrease},
+                #{statmPredreduce},
+                #{statmPointsincrease},
+                #{statmPointsreduce},
+                #{statmUpdatetime}
+        )
+    </insert>
+    <insert id="addStatMemberSelective" parameterType="com.hzitxx.hitao.entity.StatMember">
+        insert into shop_stat_member
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="statmId != null">
+                statm_id,
+            </if>
+            <if test="statmMemberid != null">
+                statm_memberid,
+            </if>
+            <if test="statmMembername != null">
+                statm_membername,
+            </if>
+            <if test="statmTime != null">
+                statm_time,
+            </if>
+            <if test="statmOrdernum != null">
+                statm_ordernum,
+            </if>
+            <if test="statmOrderamount != null">
+                statm_orderamount,
+            </if>
+            <if test="statmGoodsnum != null">
+                statm_goodsnum,
+            </if>
+            <if test="statmPredincrease != null">
+                statm_predincrease,
+            </if>
+            <if test="statmPredreduce != null">
+                statm_predreduce,
+            </if>
+            <if test="statmPointsincrease != null">
+                statm_pointsincrease,
+            </if>
+            <if test="statmPointsreduce != null">
+                statm_pointsreduce,
+            </if>
+            <if test="statmUpdatetime != null">
+                statm_updatetime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="statmId != null">
+                #{statmId},
+            </if>
+            <if test="statmMemberid != null">
+                #{statmMemberid},
+            </if>
+            <if test="statmMembername != null">
+                #{statmMembername},
+            </if>
+            <if test="statmTime != null">
+                #{statmTime},
+            </if>
+            <if test="statmOrdernum != null">
+                #{statmOrdernum},
+            </if>
+            <if test="statmOrderamount != null">
+                #{statmOrderamount},
+            </if>
+            <if test="statmGoodsnum != null">
+                #{statmGoodsnum},
+            </if>
+            <if test="statmPredincrease != null">
+                #{statmPredincrease},
+            </if>
+            <if test="statmPredreduce != null">
+                #{statmPredreduce},
+            </if>
+            <if test="statmPointsincrease != null">
+                #{statmPointsincrease},
+            </if>
+            <if test="statmPointsreduce != null">
+                #{statmPointsreduce},
+            </if>
+            <if test="statmUpdatetime != null">
+                #{statmUpdatetime},
+            </if>
+        </trim>
+    </insert>
+    <!--根据id删除数据-->
+    <delete id="deleteById" parameterType="integer">
+        DELETE FROM  shop_stat_member WHERE
+        statm_id = #{statmId}
+    </delete>
+
+    <!--根据id批量删除数据-->
+    <delete id="deleteByIds" parameterType="java.lang.String">
+          delete FROM  shop_stat_member WHERE statm_id in
+          <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+          </foreach>
+    </delete>
+    <!--根据id修改数据-->
+    <update id="updateById" parameterType="com.hzitxx.hitao.entity.StatMember">
+        UPDATE shop_stat_member
+        <set>
+          statm_id=#{statmId},
+          statm_memberid=#{statmMemberid},
+          statm_membername=#{statmMembername},
+          statm_time=#{statmTime},
+          statm_ordernum=#{statmOrdernum},
+          statm_orderamount=#{statmOrderamount},
+          statm_goodsnum=#{statmGoodsnum},
+          statm_predincrease=#{statmPredincrease},
+          statm_predreduce=#{statmPredreduce},
+          statm_pointsincrease=#{statmPointsincrease},
+          statm_pointsreduce=#{statmPointsreduce},
+          statm_updatetime=#{statmUpdatetime}
+        </set>
+        WHERE
+           statm_id = #{statmId}
+    </update>
+
+    <update id="updateSelectiveById" parameterType="com.hzitxx.hitao.entity.StatMember">
+        UPDATE shop_stat_member
+        <set>
+    <if test="statmId != null">
+          statm_id = #{statmId},
+    </if>
+    <if test="statmMemberid != null">
+          statm_memberid = #{statmMemberid},
+    </if>
+    <if test="statmMembername != null">
+          statm_membername = #{statmMembername},
+    </if>
+    <if test="statmTime != null">
+          statm_time = #{statmTime},
+    </if>
+    <if test="statmOrdernum != null">
+          statm_ordernum = #{statmOrdernum},
+    </if>
+    <if test="statmOrderamount != null">
+          statm_orderamount = #{statmOrderamount},
+    </if>
+    <if test="statmGoodsnum != null">
+          statm_goodsnum = #{statmGoodsnum},
+    </if>
+    <if test="statmPredincrease != null">
+          statm_predincrease = #{statmPredincrease},
+    </if>
+    <if test="statmPredreduce != null">
+          statm_predreduce = #{statmPredreduce},
+    </if>
+    <if test="statmPointsincrease != null">
+          statm_pointsincrease = #{statmPointsincrease},
+    </if>
+    <if test="statmPointsreduce != null">
+          statm_pointsreduce = #{statmPointsreduce},
+    </if>
+    <if test="statmUpdatetime != null">
+          statm_updatetime = #{statmUpdatetime},
+    </if>
+    </set>
+        WHERE
+      statm_id = #{statmId}
+    </update>
+    <!--根据id查询一条数据-->
+    <select id="findOne" resultMap="statMemberMap" parameterType="integer">
+        select
+        <include refid="statMemberBaseColumn"/>
+        from
+            shop_stat_member
+        WHERE
+          statm_id = #{statmId}
+    </select>
+    <!--查询数据-->
+    <select id="searchStatMember" parameterType="map" resultMap="statMemberMap">
+        SELECT
+        <include refid="statMemberBaseColumn"/>
+        FROM shop_stat_member
+        <include refid="statMemberBaseWhereSql"/>
+    </select>
+    <!--基础查询条件-->
+    <sql id="statMemberBaseWhereSql">
+        <if test="map!=null">
+            <where>
+                <if test="statmId !=null">
+                    AND statm_id = #{map.statmId}
+                </if>
+                <if test="statmMemberid !=null">
+                    AND statm_memberid = #{map.statmMemberid}
+                </if>
+                <if test="statmMembername !=null">
+                    AND statm_membername = #{map.statmMembername}
+                </if>
+                <if test="statmTime !=null">
+                    AND statm_time = #{map.statmTime}
+                </if>
+                <if test="statmOrdernum !=null">
+                    AND statm_ordernum = #{map.statmOrdernum}
+                </if>
+                <if test="statmOrderamount !=null">
+                    AND statm_orderamount = #{map.statmOrderamount}
+                </if>
+                <if test="statmGoodsnum !=null">
+                    AND statm_goodsnum = #{map.statmGoodsnum}
+                </if>
+                <if test="statmPredincrease !=null">
+                    AND statm_predincrease = #{map.statmPredincrease}
+                </if>
+                <if test="statmPredreduce !=null">
+                    AND statm_predreduce = #{map.statmPredreduce}
+                </if>
+                <if test="statmPointsincrease !=null">
+                    AND statm_pointsincrease = #{map.statmPointsincrease}
+                </if>
+                <if test="statmPointsreduce !=null">
+                    AND statm_pointsreduce = #{map.statmPointsreduce}
+                </if>
+                <if test="statmUpdatetime !=null">
+                    AND statm_updatetime = #{map.statmUpdatetime}
+                </if>
+            </where>
+        </if>
+    </sql>
+
+         <!-- 通用查询映射结果 -->
+    <resultMap id="statMemberMap" type="com.hzitxx.hitao.entity.StatMember">
+            <id column="statm_id" property="statmId"/>
+            <result column="statm_memberid" property="statmMemberid"/>
+            <result column="statm_membername" property="statmMembername"/>
+            <result column="statm_time" property="statmTime"/>
+            <result column="statm_ordernum" property="statmOrdernum"/>
+            <result column="statm_orderamount" property="statmOrderamount"/>
+            <result column="statm_goodsnum" property="statmGoodsnum"/>
+            <result column="statm_predincrease" property="statmPredincrease"/>
+            <result column="statm_predreduce" property="statmPredreduce"/>
+            <result column="statm_pointsincrease" property="statmPointsincrease"/>
+            <result column="statm_pointsreduce" property="statmPointsreduce"/>
+            <result column="statm_updatetime" property="statmUpdatetime"/>
+     </resultMap>
+</mapper>

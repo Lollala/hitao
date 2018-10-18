@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.hitao.mapper.GoodsAttrGroupTempMapper">
+    <!--shop_goods_attr_group_temp表中的列-->
+    <sql id="goodsAttrGroupTempBaseColumn">
+         id,
+         attr_id,
+         attr_group_id
+    </sql>
+
+
+    <!--添加-->
+    <insert id="addGoodsAttrGroupTemp" parameterType="com.hzitxx.hitao.entity.GoodsAttrGroupTemp">
+        INSERT INTO shop_goods_attr_group_temp(
+            <include refid="goodsAttrGroupTempBaseColumn"/>
+        ) VALUES(
+                #{id},
+                #{attrId},
+                #{attrGroupId}
+        )
+    </insert>
+    <insert id="addGoodsAttrGroupTempSelective" parameterType="com.hzitxx.hitao.entity.GoodsAttrGroupTemp">
+        insert into shop_goods_attr_group_temp
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="attrId != null">
+                attr_id,
+            </if>
+            <if test="attrGroupId != null">
+                attr_group_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="attrId != null">
+                #{attrId},
+            </if>
+            <if test="attrGroupId != null">
+                #{attrGroupId},
+            </if>
+        </trim>
+    </insert>
+    <!--根据id删除数据-->
+    <delete id="deleteById" parameterType="integer">
+        DELETE FROM  shop_goods_attr_group_temp WHERE
+        id = #{id}
+    </delete>
+
+    <!--根据id批量删除数据-->
+    <delete id="deleteByIds" parameterType="java.lang.String">
+          delete FROM  shop_goods_attr_group_temp WHERE id in
+          <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+          </foreach>
+    </delete>
+    <!--根据id修改数据-->
+    <update id="updateById" parameterType="com.hzitxx.hitao.entity.GoodsAttrGroupTemp">
+        UPDATE shop_goods_attr_group_temp
+        <set>
+          id=#{id},
+          attr_id=#{attrId},
+          attr_group_id=#{attrGroupId}
+        </set>
+        WHERE
+           id = #{id}
+    </update>
+
+    <update id="updateSelectiveById" parameterType="com.hzitxx.hitao.entity.GoodsAttrGroupTemp">
+        UPDATE shop_goods_attr_group_temp
+        <set>
+    <if test="id != null">
+          id = #{id},
+    </if>
+    <if test="attrId != null">
+          attr_id = #{attrId},
+    </if>
+    <if test="attrGroupId != null">
+          attr_group_id = #{attrGroupId},
+    </if>
+    </set>
+        WHERE
+      id = #{id}
+    </update>
+    <!--根据id查询一条数据-->
+    <select id="findOne" resultMap="goodsAttrGroupTempMap" parameterType="integer">
+        select
+        <include refid="goodsAttrGroupTempBaseColumn"/>
+        from
+            shop_goods_attr_group_temp
+        WHERE
+          id = #{id}
+    </select>
+    <!--查询数据-->
+    <select id="searchGoodsAttrGroupTemp" parameterType="map" resultMap="goodsAttrGroupTempMap">
+        SELECT
+        <include refid="goodsAttrGroupTempBaseColumn"/>
+        FROM shop_goods_attr_group_temp
+        <include refid="goodsAttrGroupTempBaseWhereSql"/>
+    </select>
+    <!--基础查询条件-->
+    <sql id="goodsAttrGroupTempBaseWhereSql">
+        <if test="map!=null">
+            <where>
+                <if test="id !=null">
+                    AND id = #{map.id}
+                </if>
+                <if test="attrId !=null">
+                    AND attr_id = #{map.attrId}
+                </if>
+                <if test="attrGroupId !=null">
+                    AND attr_group_id = #{map.attrGroupId}
+                </if>
+            </where>
+        </if>
+    </sql>
+
+         <!-- 通用查询映射结果 -->
+    <resultMap id="goodsAttrGroupTempMap" type="com.hzitxx.hitao.entity.GoodsAttrGroupTemp">
+            <id column="id" property="id"/>
+            <result column="attr_id" property="attrId"/>
+            <result column="attr_group_id" property="attrGroupId"/>
+     </resultMap>
+</mapper>

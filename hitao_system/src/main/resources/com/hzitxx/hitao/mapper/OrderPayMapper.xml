@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.hitao.mapper.OrderPayMapper">
+    <!--shop_order_pay表中的列-->
+    <sql id="orderPayBaseColumn">
+         pay_id,
+         pay_sn,
+         buyer_id,
+         api_pay_state
+    </sql>
+
+
+    <!--添加-->
+    <insert id="addOrderPay" parameterType="com.hzitxx.hitao.entity.OrderPay">
+        INSERT INTO shop_order_pay(
+            <include refid="orderPayBaseColumn"/>
+        ) VALUES(
+                #{payId},
+                #{paySn},
+                #{buyerId},
+                #{apiPayState}
+        )
+    </insert>
+    <insert id="addOrderPaySelective" parameterType="com.hzitxx.hitao.entity.OrderPay">
+        insert into shop_order_pay
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="payId != null">
+                pay_id,
+            </if>
+            <if test="paySn != null">
+                pay_sn,
+            </if>
+            <if test="buyerId != null">
+                buyer_id,
+            </if>
+            <if test="apiPayState != null">
+                api_pay_state,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="payId != null">
+                #{payId},
+            </if>
+            <if test="paySn != null">
+                #{paySn},
+            </if>
+            <if test="buyerId != null">
+                #{buyerId},
+            </if>
+            <if test="apiPayState != null">
+                #{apiPayState},
+            </if>
+        </trim>
+    </insert>
+    <!--根据id删除数据-->
+    <delete id="deleteById" parameterType="integer">
+        DELETE FROM  shop_order_pay WHERE
+        pay_id = #{payId}
+    </delete>
+
+    <!--根据id批量删除数据-->
+    <delete id="deleteByIds" parameterType="java.lang.String">
+          delete FROM  shop_order_pay WHERE pay_id in
+          <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+          </foreach>
+    </delete>
+    <!--根据id修改数据-->
+    <update id="updateById" parameterType="com.hzitxx.hitao.entity.OrderPay">
+        UPDATE shop_order_pay
+        <set>
+          pay_id=#{payId},
+          pay_sn=#{paySn},
+          buyer_id=#{buyerId},
+          api_pay_state=#{apiPayState}
+        </set>
+        WHERE
+           pay_id = #{payId}
+    </update>
+
+    <update id="updateSelectiveById" parameterType="com.hzitxx.hitao.entity.OrderPay">
+        UPDATE shop_order_pay
+        <set>
+    <if test="payId != null">
+          pay_id = #{payId},
+    </if>
+    <if test="paySn != null">
+          pay_sn = #{paySn},
+    </if>
+    <if test="buyerId != null">
+          buyer_id = #{buyerId},
+    </if>
+    <if test="apiPayState != null">
+          api_pay_state = #{apiPayState},
+    </if>
+    </set>
+        WHERE
+      pay_id = #{payId}
+    </update>
+    <!--根据id查询一条数据-->
+    <select id="findOne" resultMap="orderPayMap" parameterType="integer">
+        select
+        <include refid="orderPayBaseColumn"/>
+        from
+            shop_order_pay
+        WHERE
+          pay_id = #{payId}
+    </select>
+    <!--查询数据-->
+    <select id="searchOrderPay" parameterType="map" resultMap="orderPayMap">
+        SELECT
+        <include refid="orderPayBaseColumn"/>
+        FROM shop_order_pay
+        <include refid="orderPayBaseWhereSql"/>
+    </select>
+    <!--基础查询条件-->
+    <sql id="orderPayBaseWhereSql">
+        <if test="map!=null">
+            <where>
+                <if test="payId !=null">
+                    AND pay_id = #{map.payId}
+                </if>
+                <if test="paySn !=null">
+                    AND pay_sn = #{map.paySn}
+                </if>
+                <if test="buyerId !=null">
+                    AND buyer_id = #{map.buyerId}
+                </if>
+                <if test="apiPayState !=null">
+                    AND api_pay_state = #{map.apiPayState}
+                </if>
+            </where>
+        </if>
+    </sql>
+
+         <!-- 通用查询映射结果 -->
+    <resultMap id="orderPayMap" type="com.hzitxx.hitao.entity.OrderPay">
+            <id column="pay_id" property="payId"/>
+            <result column="pay_sn" property="paySn"/>
+            <result column="buyer_id" property="buyerId"/>
+            <result column="api_pay_state" property="apiPayState"/>
+     </resultMap>
+</mapper>
