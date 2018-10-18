@@ -99,7 +99,7 @@ public class LoginController {
 				result.put("roles", roles);
 
 				result.put("avatar",
-						"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=925993276,4023638545&fm=27&gp=0.jpg");
+						"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1539840994460&di=77b11dc4877853a3eb2b0adc161d2d64&imgtype=0&src=http%3A%2F%2Fimgtu.5011.net%2Fuploads%2Fcontent%2F20170712%2F4142541499828777.jpg");
 				return ServerResponse.createBySuccess("获取用户数据成功！", JSON.toJSON(result));
 			}
 		} catch (UnsupportedEncodingException e) {

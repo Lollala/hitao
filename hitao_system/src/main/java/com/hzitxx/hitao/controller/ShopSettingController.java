@@ -16,7 +16,7 @@ import com.hzitxx.hitao.service.ShopSettingService;
 import com.hzitxx.hitao.utils.LayuiEntity;
 import com.hzitxx.hitao.utils.ServerResponse;
 
-@Controller
+//@Controller
 public class ShopSettingController {
 	@Autowired
 	private ShopSettingService shopSettingService;
@@ -62,11 +62,11 @@ public class ShopSettingController {
 	 * @param shopSetting
 	 * @return
 	 */
-	@PostMapping("/deleteShopSetting")
-	@ResponseBody
-	public ServerResponse<?> deleteShopSetting(@RequestParam("id") Integer id){
-		return shopSettingService.deleteShopSetting(id);
-	}
+//	/*@PostMapping("/deleteShopSetting")
+//	@ResponseBody
+//	public ServerResponse<?> deleteShopSetting(Integer id){
+//		return shopSettingService.deleteShopSetting(id);
+//	}*/
 	
 	
 	
