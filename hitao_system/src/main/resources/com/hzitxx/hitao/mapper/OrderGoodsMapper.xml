@@ -248,55 +248,54 @@
     </select>
     <!--基础查询条件-->
     <sql id="orderGoodsBaseWhereSql">
-        <if test="map!=null">
             <where>
                 <if test="recId !=null">
-                    AND rec_id = #{map.recId}
+                    AND rec_id = #{recId}
                 </if>
                 <if test="orderId !=null">
-                    AND order_id = #{map.orderId}
+                    AND order_id = #{orderId}
                 </if>
                 <if test="goodsId !=null">
-                    AND goods_id = #{map.goodsId}
+                    AND goods_id = #{goodsId}
                 </if>
                 <if test="goodsName !=null">
-                    AND goods_name = #{map.goodsName}
+                    AND goods_name = #{goodsName}
                 </if>
                 <if test="goodsPrice !=null">
-                    AND goods_price = #{map.goodsPrice}
+                    AND goods_price = #{goodsPrice}
                 </if>
                 <if test="goodsNum !=null">
-                    AND goods_num = #{map.goodsNum}
+                    AND goods_num = #{goodsNum}
                 </if>
                 <if test="goodsImage !=null">
-                    AND goods_image = #{map.goodsImage}
+                    AND goods_image = #{goodsImage}
                 </if>
                 <if test="goodsPayPrice !=null">
-                    AND goods_pay_price = #{map.goodsPayPrice}
+                    AND goods_pay_price = #{goodsPayPrice}
                 </if>
                 <if test="buyerId !=null">
-                    AND buyer_id = #{map.buyerId}
+                    AND buyer_id = #{buyerId}
                 </if>
                 <if test="goodsType !=null">
-                    AND goods_type = #{map.goodsType}
+                    AND goods_type = #{goodsType}
                 </if>
                 <if test="promotionsId !=null">
-                    AND promotions_id = #{map.promotionsId}
+                    AND promotions_id = #{promotionsId}
                 </if>
                 <if test="commisRate !=null">
-                    AND commis_rate = #{map.commisRate}
+                    AND commis_rate = #{commisRate}
                 </if>
                 <if test="isDel !=null">
-                    AND is_del = #{map.isDel}
+                    AND is_del = #{isDel}
                 </if>
                 <if test="createdTime !=null">
-                    AND created_time = #{map.createdTime}
+                    AND created_time = #{createdTime}
                 </if>
                 <if test="updatedTime !=null">
-                    AND updated_time = #{map.updatedTime}
+                    AND updated_time = #{updatedTime}
                 </if>
             </where>
-        </if>
+
     </sql>
 
          <!-- 通用查询映射结果 -->

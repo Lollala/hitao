@@ -152,31 +152,30 @@
     </select>
     <!--基础查询条件-->
     <sql id="orderLogBaseWhereSql">
-        <if test="map!=null">
+ 
             <where>
                 <if test="logId !=null">
-                    AND log_id = #{map.logId}
+                    AND log_id = #{logId}
                 </if>
                 <if test="orderId !=null">
-                    AND order_id = #{map.orderId}
+                    AND order_id = #{orderId}
                 </if>
                 <if test="logMsg !=null">
-                    AND log_msg = #{map.logMsg}
+                    AND log_msg = #{logMsg}
                 </if>
                 <if test="logTime !=null">
-                    AND log_time = #{map.logTime}
+                    AND log_time = #{logTime}
                 </if>
                 <if test="logRole !=null">
-                    AND log_role = #{map.logRole}
+                    AND log_role = #{logRole}
                 </if>
                 <if test="logUser !=null">
-                    AND log_user = #{map.logUser}
+                    AND log_user = #{logUser}
                 </if>
                 <if test="logOrderstate !=null">
-                    AND log_orderstate = #{map.logOrderstate}
+                    AND log_orderstate = #{logOrderstate}
                 </if>
             </where>
-        </if>
     </sql>
 
          <!-- 通用查询映射结果 -->

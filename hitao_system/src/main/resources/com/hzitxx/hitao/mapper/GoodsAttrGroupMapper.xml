@@ -128,25 +128,23 @@
     </select>
     <!--基础查询条件-->
     <sql id="goodsAttrGroupBaseWhereSql">
-        <if test="map!=null">
             <where>
                 <if test="groupId !=null">
-                    AND group_id = #{map.groupId}
+                    AND group_id = #{groupId}
                 </if>
                 <if test="groupName !=null">
-                    AND group_name = #{map.groupName}
+                    AND group_name = #{groupName}
                 </if>
                 <if test="isDel !=null">
-                    AND is_del = #{map.isDel}
+                    AND is_del = #{isDel}
                 </if>
                 <if test="createdTime !=null">
-                    AND created_time = #{map.createdTime}
+                    AND created_time = #{createdTime}
                 </if>
                 <if test="updatedTime !=null">
-                    AND updated_time = #{map.updatedTime}
+                    AND updated_time = #{updatedTime}
                 </if>
             </where>
-        </if>
     </sql>
 
          <!-- 通用查询映射结果 -->

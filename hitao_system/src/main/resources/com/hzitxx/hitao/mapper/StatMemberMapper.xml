@@ -212,46 +212,44 @@
     </select>
     <!--基础查询条件-->
     <sql id="statMemberBaseWhereSql">
-        <if test="map!=null">
             <where>
                 <if test="statmId !=null">
-                    AND statm_id = #{map.statmId}
+                    AND statm_id = #{statmId}
                 </if>
                 <if test="statmMemberid !=null">
-                    AND statm_memberid = #{map.statmMemberid}
+                    AND statm_memberid = #{statmMemberid}
                 </if>
                 <if test="statmMembername !=null">
-                    AND statm_membername = #{map.statmMembername}
+                    AND statm_membername = #{statmMembername}
                 </if>
                 <if test="statmTime !=null">
-                    AND statm_time = #{map.statmTime}
+                    AND statm_time = #{statmTime}
                 </if>
                 <if test="statmOrdernum !=null">
-                    AND statm_ordernum = #{map.statmOrdernum}
+                    AND statm_ordernum = #{statmOrdernum}
                 </if>
                 <if test="statmOrderamount !=null">
-                    AND statm_orderamount = #{map.statmOrderamount}
+                    AND statm_orderamount = #{statmOrderamount}
                 </if>
                 <if test="statmGoodsnum !=null">
-                    AND statm_goodsnum = #{map.statmGoodsnum}
+                    AND statm_goodsnum = #{statmGoodsnum}
                 </if>
                 <if test="statmPredincrease !=null">
-                    AND statm_predincrease = #{map.statmPredincrease}
+                    AND statm_predincrease = #{statmPredincrease}
                 </if>
                 <if test="statmPredreduce !=null">
-                    AND statm_predreduce = #{map.statmPredreduce}
+                    AND statm_predreduce = #{statmPredreduce}
                 </if>
                 <if test="statmPointsincrease !=null">
-                    AND statm_pointsincrease = #{map.statmPointsincrease}
+                    AND statm_pointsincrease = #{statmPointsincrease}
                 </if>
                 <if test="statmPointsreduce !=null">
-                    AND statm_pointsreduce = #{map.statmPointsreduce}
+                    AND statm_pointsreduce = #{statmPointsreduce}
                 </if>
                 <if test="statmUpdatetime !=null">
-                    AND statm_updatetime = #{map.statmUpdatetime}
+                    AND statm_updatetime = #{statmUpdatetime}
                 </if>
             </where>
-        </if>
     </sql>
 
          <!-- 通用查询映射结果 -->

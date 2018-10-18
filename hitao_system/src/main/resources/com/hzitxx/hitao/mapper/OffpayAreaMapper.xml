@@ -108,22 +108,20 @@
     </select>
     <!--基础查询条件-->
     <sql id="offpayAreaBaseWhereSql">
-        <if test="map!=null">
             <where>
                 <if test="areaId !=null">
-                    AND area_id = #{map.areaId}
+                    AND area_id = #{areaId}
                 </if>
                 <if test="isDel !=null">
-                    AND is_del = #{map.isDel}
+                    AND is_del = #{isDel}
                 </if>
                 <if test="createdTime !=null">
-                    AND created_time = #{map.createdTime}
+                    AND created_time = #{createdTime}
                 </if>
                 <if test="updatedTime !=null">
-                    AND updated_time = #{map.updatedTime}
+                    AND updated_time = #{updatedTime}
                 </if>
             </where>
-        </if>
     </sql>
 
          <!-- 通用查询映射结果 -->

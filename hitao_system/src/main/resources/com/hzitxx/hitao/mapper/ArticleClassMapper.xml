@@ -176,37 +176,35 @@
     </select>
     <!--基础查询条件-->
     <sql id="articleClassBaseWhereSql">
-        <if test="map!=null">
             <where>
                 <if test="acId !=null">
-                    AND ac_id = #{map.acId}
+                    AND ac_id = #{acId}
                 </if>
                 <if test="acCode !=null">
-                    AND ac_code = #{map.acCode}
+                    AND ac_code = #{acCode}
                 </if>
                 <if test="acName !=null">
-                    AND ac_name = #{map.acName}
+                    AND ac_name = #{acName}
                 </if>
                 <if test="acParentId !=null">
-                    AND ac_parent_id = #{map.acParentId}
+                    AND ac_parent_id = #{acParentId}
                 </if>
                 <if test="acSort !=null">
-                    AND ac_sort = #{map.acSort}
+                    AND ac_sort = #{acSort}
                 </if>
                 <if test="isDel !=null">
-                    AND is_del = #{map.isDel}
+                    AND is_del = #{isDel}
                 </if>
                 <if test="acStatus !=null">
-                    AND ac_status = #{map.acStatus}
+                    AND ac_status = #{acStatus}
                 </if>
                 <if test="createdTime !=null">
-                    AND created_time = #{map.createdTime}
+                    AND created_time = #{createdTime}
                 </if>
                 <if test="updatedTime !=null">
-                    AND updated_time = #{map.updatedTime}
+                    AND updated_time = #{updatedTime}
                 </if>
             </where>
-        </if>
     </sql>
 
          <!-- 通用查询映射结果 -->

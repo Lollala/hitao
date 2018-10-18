@@ -188,40 +188,38 @@
     </select>
     <!--基础查询条件-->
     <sql id="frontCategoryBaseWhereSql">
-        <if test="map!=null">
             <where>
                 <if test="frontCatId !=null">
-                    AND front_cat_id = #{map.frontCatId}
+                    AND front_cat_id = #{frontCatId}
                 </if>
                 <if test="catId !=null">
-                    AND cat_id = #{map.catId}
+                    AND cat_id = #{catId}
                 </if>
                 <if test="catName !=null">
-                    AND cat_name = #{map.catName}
+                    AND cat_name = #{catName}
                 </if>
                 <if test="level !=null">
-                    AND level = #{map.level}
+                    AND level = #{level}
                 </if>
                 <if test="parentId !=null">
-                    AND parent_id = #{map.parentId}
+                    AND parent_id = #{parentId}
                 </if>
                 <if test="sort !=null">
-                    AND sort = #{map.sort}
+                    AND sort = #{sort}
                 </if>
                 <if test="iconImage !=null">
-                    AND icon_image = #{map.iconImage}
+                    AND icon_image = #{iconImage}
                 </if>
                 <if test="url !=null">
-                    AND url = #{map.url}
+                    AND url = #{url}
                 </if>
                 <if test="advImage !=null">
-                    AND adv_image = #{map.advImage}
+                    AND adv_image = #{advImage}
                 </if>
                 <if test="advLink !=null">
-                    AND adv_link = #{map.advLink}
+                    AND adv_link = #{advLink}
                 </if>
             </where>
-        </if>
     </sql>
 
          <!-- 通用查询映射结果 -->

@@ -168,37 +168,35 @@
     </select>
     <!--基础查询条件-->
     <sql id="dicBaseWhereSql">
-        <if test="map!=null">
             <where>
                 <if test="dicId !=null">
-                    AND dic_id = #{map.dicId}
+                    AND dic_id = #{dicId}
                 </if>
                 <if test="name !=null">
-                    AND name = #{map.name}
+                    AND name = #{name}
                 </if>
                 <if test="code !=null">
-                    AND code = #{map.code}
+                    AND code = #{code}
                 </if>
                 <if test="parentId !=null">
-                    AND parent_id = #{map.parentId}
+                    AND parent_id = #{parentId}
                 </if>
                 <if test="status !=null">
-                    AND status = #{map.status}
+                    AND status = #{status}
                 </if>
                 <if test="createdTime !=null">
-                    AND created_time = #{map.createdTime}
+                    AND created_time = #{createdTime}
                 </if>
                 <if test="createdBy !=null">
-                    AND created_by = #{map.createdBy}
+                    AND created_by = #{createdBy}
                 </if>
                 <if test="updatedTime !=null">
-                    AND updated_time = #{map.updatedTime}
+                    AND updated_time = #{updatedTime}
                 </if>
                 <if test="updatedBy !=null">
-                    AND updated_by = #{map.updatedBy}
+                    AND updated_by = #{updatedBy}
                 </if>
             </where>
-        </if>
     </sql>
 
          <!-- 通用查询映射结果 -->

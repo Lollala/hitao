@@ -152,31 +152,30 @@
     </select>
     <!--基础查询条件-->
     <sql id="permissionRouteBaseWhereSql">
-        <if test="map!=null">
+
             <where>
                 <if test="routeId !=null">
-                    AND route_id = #{map.routeId}
+                    AND route_id = #{routeId}
                 </if>
                 <if test="parentId !=null">
-                    AND parent_id = #{map.parentId}
+                    AND parent_id = #{parentId}
                 </if>
                 <if test="path !=null">
-                    AND path = #{map.path}
+                    AND path = #{path}
                 </if>
                 <if test="component !=null">
-                    AND component = #{map.component}
+                    AND component = #{component}
                 </if>
                 <if test="name !=null">
-                    AND name = #{map.name}
+                    AND name = #{name}
                 </if>
                 <if test="redirect !=null">
-                    AND redirect = #{map.redirect}
+                    AND redirect = #{redirect}
                 </if>
                 <if test="meta !=null">
-                    AND meta = #{map.meta}
+                    AND meta = #{meta}
                 </if>
             </where>
-        </if>
     </sql>
 
          <!-- 通用查询映射结果 -->

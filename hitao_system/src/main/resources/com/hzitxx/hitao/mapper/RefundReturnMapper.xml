@@ -476,112 +476,110 @@
     </select>
     <!--基础查询条件-->
     <sql id="refundReturnBaseWhereSql">
-        <if test="map!=null">
             <where>
                 <if test="refundId !=null">
-                    AND refund_id = #{map.refundId}
+                    AND refund_id = #{refundId}
                 </if>
                 <if test="orderId !=null">
-                    AND order_id = #{map.orderId}
+                    AND order_id = #{orderId}
                 </if>
                 <if test="refundSn !=null">
-                    AND refund_sn = #{map.refundSn}
+                    AND refund_sn = #{refundSn}
                 </if>
                 <if test="buyerId !=null">
-                    AND buyer_id = #{map.buyerId}
+                    AND buyer_id = #{buyerId}
                 </if>
                 <if test="buyerName !=null">
-                    AND buyer_name = #{map.buyerName}
+                    AND buyer_name = #{buyerName}
                 </if>
                 <if test="goodsId !=null">
-                    AND goods_id = #{map.goodsId}
+                    AND goods_id = #{goodsId}
                 </if>
                 <if test="orderGoodsId !=null">
-                    AND order_goods_id = #{map.orderGoodsId}
+                    AND order_goods_id = #{orderGoodsId}
                 </if>
                 <if test="goodsName !=null">
-                    AND goods_name = #{map.goodsName}
+                    AND goods_name = #{goodsName}
                 </if>
                 <if test="goodsNum !=null">
-                    AND goods_num = #{map.goodsNum}
+                    AND goods_num = #{goodsNum}
                 </if>
                 <if test="refundAmount !=null">
-                    AND refund_amount = #{map.refundAmount}
+                    AND refund_amount = #{refundAmount}
                 </if>
                 <if test="goodsImage !=null">
-                    AND goods_image = #{map.goodsImage}
+                    AND goods_image = #{goodsImage}
                 </if>
                 <if test="orderGoodsType !=null">
-                    AND order_goods_type = #{map.orderGoodsType}
+                    AND order_goods_type = #{orderGoodsType}
                 </if>
                 <if test="refundType !=null">
-                    AND refund_type = #{map.refundType}
+                    AND refund_type = #{refundType}
                 </if>
                 <if test="sellerState !=null">
-                    AND seller_state = #{map.sellerState}
+                    AND seller_state = #{sellerState}
                 </if>
                 <if test="refundState !=null">
-                    AND refund_state = #{map.refundState}
+                    AND refund_state = #{refundState}
                 </if>
                 <if test="returnType !=null">
-                    AND return_type = #{map.returnType}
+                    AND return_type = #{returnType}
                 </if>
                 <if test="orderLock !=null">
-                    AND order_lock = #{map.orderLock}
+                    AND order_lock = #{orderLock}
                 </if>
                 <if test="goodsState !=null">
-                    AND goods_state = #{map.goodsState}
+                    AND goods_state = #{goodsState}
                 </if>
                 <if test="addTime !=null">
-                    AND add_time = #{map.addTime}
+                    AND add_time = #{addTime}
                 </if>
                 <if test="sellerTime !=null">
-                    AND seller_time = #{map.sellerTime}
+                    AND seller_time = #{sellerTime}
                 </if>
                 <if test="adminTime !=null">
-                    AND admin_time = #{map.adminTime}
+                    AND admin_time = #{adminTime}
                 </if>
                 <if test="buyerMessage !=null">
-                    AND buyer_message = #{map.buyerMessage}
+                    AND buyer_message = #{buyerMessage}
                 </if>
                 <if test="sellerMessage !=null">
-                    AND seller_message = #{map.sellerMessage}
+                    AND seller_message = #{sellerMessage}
                 </if>
                 <if test="adminMessage !=null">
-                    AND admin_message = #{map.adminMessage}
+                    AND admin_message = #{adminMessage}
                 </if>
                 <if test="expressId !=null">
-                    AND express_id = #{map.expressId}
+                    AND express_id = #{expressId}
                 </if>
                 <if test="invoiceNo !=null">
-                    AND invoice_no = #{map.invoiceNo}
+                    AND invoice_no = #{invoiceNo}
                 </if>
                 <if test="shipTime !=null">
-                    AND ship_time = #{map.shipTime}
+                    AND ship_time = #{shipTime}
                 </if>
                 <if test="delayTime !=null">
-                    AND delay_time = #{map.delayTime}
+                    AND delay_time = #{delayTime}
                 </if>
                 <if test="receiveTime !=null">
-                    AND receive_time = #{map.receiveTime}
+                    AND receive_time = #{receiveTime}
                 </if>
                 <if test="receiveMessage !=null">
-                    AND receive_message = #{map.receiveMessage}
+                    AND receive_message = #{receiveMessage}
                 </if>
                 <if test="commisRate !=null">
-                    AND commis_rate = #{map.commisRate}
+                    AND commis_rate = #{commisRate}
                 </if>
                 <if test="isDel !=null">
-                    AND is_del = #{map.isDel}
+                    AND is_del = #{isDel}
                 </if>
                 <if test="createdTime !=null">
-                    AND created_time = #{map.createdTime}
+                    AND created_time = #{createdTime}
                 </if>
                 <if test="updatedTime !=null">
-                    AND updated_time = #{map.updatedTime}
+                    AND updated_time = #{updatedTime}
                 </if>
             </where>
-        </if>
     </sql>
 
          <!-- 通用查询映射结果 -->

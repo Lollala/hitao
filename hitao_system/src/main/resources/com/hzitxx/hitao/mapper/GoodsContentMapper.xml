@@ -116,22 +116,20 @@
     </select>
     <!--基础查询条件-->
     <sql id="goodsContentBaseWhereSql">
-        <if test="map!=null">
             <where>
                 <if test="goodsId !=null">
-                    AND goods_id = #{map.goodsId}
+                    AND goods_id = #{goodsId}
                 </if>
                 <if test="content !=null">
-                    AND content = #{map.content}
+                    AND content = #{content}
                 </if>
                 <if test="createdTime !=null">
-                    AND created_time = #{map.createdTime}
+                    AND created_time = #{createdTime}
                 </if>
                 <if test="updatedTime !=null">
-                    AND updated_time = #{map.updatedTime}
+                    AND updated_time = #{updatedTime}
                 </if>
             </where>
-        </if>
     </sql>
 
          <!-- 通用查询映射结果 -->

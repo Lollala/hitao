@@ -140,28 +140,26 @@
     </select>
     <!--基础查询条件-->
     <sql id="goodsAttrTemplateBaseWhereSql">
-        <if test="map!=null">
             <where>
                 <if test="attrId !=null">
-                    AND attr_id = #{map.attrId}
+                    AND attr_id = #{attrId}
                 </if>
                 <if test="catId !=null">
-                    AND cat_id = #{map.catId}
+                    AND cat_id = #{catId}
                 </if>
                 <if test="attrValue !=null">
-                    AND attr_value = #{map.attrValue}
+                    AND attr_value = #{attrValue}
                 </if>
                 <if test="isDel !=null">
-                    AND is_del = #{map.isDel}
+                    AND is_del = #{isDel}
                 </if>
                 <if test="createdTime !=null">
-                    AND created_time = #{map.createdTime}
+                    AND created_time = #{createdTime}
                 </if>
                 <if test="updatedTime !=null">
-                    AND updated_time = #{map.updatedTime}
+                    AND updated_time = #{updatedTime}
                 </if>
             </where>
-        </if>
     </sql>
 
          <!-- 通用查询映射结果 -->

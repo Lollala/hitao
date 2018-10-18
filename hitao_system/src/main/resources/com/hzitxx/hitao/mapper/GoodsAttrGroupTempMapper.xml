@@ -104,19 +104,17 @@
     </select>
     <!--基础查询条件-->
     <sql id="goodsAttrGroupTempBaseWhereSql">
-        <if test="map!=null">
             <where>
                 <if test="id !=null">
-                    AND id = #{map.id}
+                    AND id = #{id}
                 </if>
                 <if test="attrId !=null">
-                    AND attr_id = #{map.attrId}
+                    AND attr_id = #{attrId}
                 </if>
                 <if test="attrGroupId !=null">
-                    AND attr_group_id = #{map.attrGroupId}
+                    AND attr_group_id = #{attrGroupId}
                 </if>
             </where>
-        </if>
     </sql>
 
          <!-- 通用查询映射结果 -->

@@ -116,22 +116,21 @@
     </select>
     <!--基础查询条件-->
     <sql id="orderPayBaseWhereSql">
-        <if test="map!=null">
             <where>
                 <if test="payId !=null">
-                    AND pay_id = #{map.payId}
+                    AND pay_id = #{payId}
                 </if>
                 <if test="paySn !=null">
-                    AND pay_sn = #{map.paySn}
+                    AND pay_sn = #{paySn}
                 </if>
                 <if test="buyerId !=null">
-                    AND buyer_id = #{map.buyerId}
+                    AND buyer_id = #{buyerId}
                 </if>
                 <if test="apiPayState !=null">
-                    AND api_pay_state = #{map.apiPayState}
+                    AND api_pay_state = #{apiPayState}
                 </if>
             </where>
-        </if>
+ 
     </sql>
 
          <!-- 通用查询映射结果 -->

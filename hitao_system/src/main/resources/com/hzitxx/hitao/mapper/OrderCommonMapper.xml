@@ -272,61 +272,59 @@
     </select>
     <!--基础查询条件-->
     <sql id="orderCommonBaseWhereSql">
-        <if test="map!=null">
             <where>
                 <if test="orderId !=null">
-                    AND order_id = #{map.orderId}
+                    AND order_id = #{orderId}
                 </if>
                 <if test="shippingTime !=null">
-                    AND shipping_time = #{map.shippingTime}
+                    AND shipping_time = #{shippingTime}
                 </if>
                 <if test="shippingExpressId !=null">
-                    AND shipping_express_id = #{map.shippingExpressId}
+                    AND shipping_express_id = #{shippingExpressId}
                 </if>
                 <if test="evaluationTime !=null">
-                    AND evaluation_time = #{map.evaluationTime}
+                    AND evaluation_time = #{evaluationTime}
                 </if>
                 <if test="evalsellerState !=null">
-                    AND evalseller_state = #{map.evalsellerState}
+                    AND evalseller_state = #{evalsellerState}
                 </if>
                 <if test="evalsellerTime !=null">
-                    AND evalseller_time = #{map.evalsellerTime}
+                    AND evalseller_time = #{evalsellerTime}
                 </if>
                 <if test="orderMessage !=null">
-                    AND order_message = #{map.orderMessage}
+                    AND order_message = #{orderMessage}
                 </if>
                 <if test="orderPointscount !=null">
-                    AND order_pointscount = #{map.orderPointscount}
+                    AND order_pointscount = #{orderPointscount}
                 </if>
                 <if test="voucherPrice !=null">
-                    AND voucher_price = #{map.voucherPrice}
+                    AND voucher_price = #{voucherPrice}
                 </if>
                 <if test="voucherCode !=null">
-                    AND voucher_code = #{map.voucherCode}
+                    AND voucher_code = #{voucherCode}
                 </if>
                 <if test="deliverExplain !=null">
-                    AND deliver_explain = #{map.deliverExplain}
+                    AND deliver_explain = #{deliverExplain}
                 </if>
                 <if test="daddressId !=null">
-                    AND daddress_id = #{map.daddressId}
+                    AND daddress_id = #{daddressId}
                 </if>
                 <if test="reciverName !=null">
-                    AND reciver_name = #{map.reciverName}
+                    AND reciver_name = #{reciverName}
                 </if>
                 <if test="reciverInfo !=null">
-                    AND reciver_info = #{map.reciverInfo}
+                    AND reciver_info = #{reciverInfo}
                 </if>
                 <if test="reciverProvinceId !=null">
-                    AND reciver_province_id = #{map.reciverProvinceId}
+                    AND reciver_province_id = #{reciverProvinceId}
                 </if>
                 <if test="invoiceInfo !=null">
-                    AND invoice_info = #{map.invoiceInfo}
+                    AND invoice_info = #{invoiceInfo}
                 </if>
                 <if test="promotionInfo !=null">
-                    AND promotion_info = #{map.promotionInfo}
+                    AND promotion_info = #{promotionInfo}
                 </if>
             </where>
-        </if>
     </sql>
 
          <!-- 通用查询映射结果 -->

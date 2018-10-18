@@ -120,25 +120,25 @@
     </select>
     <!--基础查询条件-->
     <sql id="typeBrandBaseWhereSql">
-        <if test="map!=null">
+
             <where>
                 <if test="typeId !=null">
-                    AND type_id = #{map.typeId}
+                    AND type_id = #{typeId}
                 </if>
                 <if test="brandId !=null">
-                    AND brand_id = #{map.brandId}
+                    AND brand_id = #{brandId}
                 </if>
                 <if test="isDel !=null">
-                    AND is_del = #{map.isDel}
+                    AND is_del = #{isDel}
                 </if>
                 <if test="createdTime !=null">
-                    AND created_time = #{map.createdTime}
+                    AND created_time = #{createdTime}
                 </if>
                 <if test="updatedTime !=null">
-                    AND updated_time = #{map.updatedTime}
+                    AND updated_time = #{updatedTime}
                 </if>
             </where>
-        </if>
+
     </sql>
 
          <!-- 通用查询映射结果 -->

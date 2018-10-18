@@ -212,46 +212,44 @@
     </select>
     <!--基础查询条件-->
     <sql id="advPositionBaseWhereSql">
-        <if test="map!=null">
             <where>
                 <if test="apId !=null">
-                    AND ap_id = #{map.apId}
+                    AND ap_id = #{apId}
                 </if>
                 <if test="apName !=null">
-                    AND ap_name = #{map.apName}
+                    AND ap_name = #{apName}
                 </if>
                 <if test="apIntro !=null">
-                    AND ap_intro = #{map.apIntro}
+                    AND ap_intro = #{apIntro}
                 </if>
                 <if test="apClass !=null">
-                    AND ap_class = #{map.apClass}
+                    AND ap_class = #{apClass}
                 </if>
                 <if test="apDisplay !=null">
-                    AND ap_display = #{map.apDisplay}
+                    AND ap_display = #{apDisplay}
                 </if>
                 <if test="isUse !=null">
-                    AND is_use = #{map.isUse}
+                    AND is_use = #{isUse}
                 </if>
                 <if test="apWidth !=null">
-                    AND ap_width = #{map.apWidth}
+                    AND ap_width = #{apWidth}
                 </if>
                 <if test="apHeight !=null">
-                    AND ap_height = #{map.apHeight}
+                    AND ap_height = #{apHeight}
                 </if>
                 <if test="apPrice !=null">
-                    AND ap_price = #{map.apPrice}
+                    AND ap_price = #{apPrice}
                 </if>
                 <if test="advNum !=null">
-                    AND adv_num = #{map.advNum}
+                    AND adv_num = #{advNum}
                 </if>
                 <if test="clickNum !=null">
-                    AND click_num = #{map.clickNum}
+                    AND click_num = #{clickNum}
                 </if>
                 <if test="defaultContent !=null">
-                    AND default_content = #{map.defaultContent}
+                    AND default_content = #{defaultContent}
                 </if>
             </where>
-        </if>
     </sql>
 
          <!-- 通用查询映射结果 -->

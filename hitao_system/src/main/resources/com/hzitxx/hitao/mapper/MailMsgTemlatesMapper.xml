@@ -152,31 +152,30 @@
     </select>
     <!--基础查询条件-->
     <sql id="mailMsgTemlatesBaseWhereSql">
-        <if test="map!=null">
+
             <where>
                 <if test="id !=null">
-                    AND id = #{map.id}
+                    AND id = #{id}
                 </if>
                 <if test="name !=null">
-                    AND name = #{map.name}
+                    AND name = #{name}
                 </if>
                 <if test="title !=null">
-                    AND title = #{map.title}
+                    AND title = #{title}
                 </if>
                 <if test="code !=null">
-                    AND code = #{map.code}
+                    AND code = #{code}
                 </if>
                 <if test="content !=null">
-                    AND content = #{map.content}
+                    AND content = #{content}
                 </if>
                 <if test="type !=null">
-                    AND type = #{map.type}
+                    AND type = #{type}
                 </if>
                 <if test="mailSwitch !=null">
-                    AND mail_switch = #{map.mailSwitch}
+                    AND mail_switch = #{mailSwitch}
                 </if>
             </where>
-        </if>
     </sql>
 
          <!-- 通用查询映射结果 -->

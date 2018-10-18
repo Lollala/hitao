@@ -140,28 +140,26 @@
     </select>
     <!--基础查询条件-->
     <sql id="goodsImagesBaseWhereSql">
-        <if test="map!=null">
             <where>
                 <if test="goodsImageId !=null">
-                    AND goods_image_id = #{map.goodsImageId}
+                    AND goods_image_id = #{goodsImageId}
                 </if>
                 <if test="goodsId !=null">
-                    AND goods_id = #{map.goodsId}
+                    AND goods_id = #{goodsId}
                 </if>
                 <if test="colorId !=null">
-                    AND color_id = #{map.colorId}
+                    AND color_id = #{colorId}
                 </if>
                 <if test="goodsImage !=null">
-                    AND goods_image = #{map.goodsImage}
+                    AND goods_image = #{goodsImage}
                 </if>
                 <if test="goodsImageSort !=null">
-                    AND goods_image_sort = #{map.goodsImageSort}
+                    AND goods_image_sort = #{goodsImageSort}
                 </if>
                 <if test="isDefault !=null">
-                    AND is_default = #{map.isDefault}
+                    AND is_default = #{isDefault}
                 </if>
             </where>
-        </if>
     </sql>
 
          <!-- 通用查询映射结果 -->

@@ -164,34 +164,32 @@
     </select>
     <!--基础查询条件-->
     <sql id="gatewayApiDefineBaseWhereSql">
-        <if test="map!=null">
             <where>
                 <if test="id !=null">
-                    AND id = #{map.id}
+                    AND id = #{id}
                 </if>
                 <if test="path !=null">
-                    AND path = #{map.path}
+                    AND path = #{path}
                 </if>
                 <if test="serviceId !=null">
-                    AND service_id = #{map.serviceId}
+                    AND service_id = #{serviceId}
                 </if>
                 <if test="url !=null">
-                    AND url = #{map.url}
+                    AND url = #{url}
                 </if>
                 <if test="retryable !=null">
-                    AND retryable = #{map.retryable}
+                    AND retryable = #{retryable}
                 </if>
                 <if test="enabled !=null">
-                    AND enabled = #{map.enabled}
+                    AND enabled = #{enabled}
                 </if>
                 <if test="stripPrefix !=null">
-                    AND strip_prefix = #{map.stripPrefix}
+                    AND strip_prefix = #{stripPrefix}
                 </if>
                 <if test="apiName !=null">
-                    AND api_name = #{map.apiName}
+                    AND api_name = #{apiName}
                 </if>
             </where>
-        </if>
     </sql>
 
          <!-- 通用查询映射结果 -->
