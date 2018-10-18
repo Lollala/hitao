@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -50,7 +51,7 @@ public class ShopArticleController {
 	 * @param shopArticle
 	 * @return
 	 */
-	@GetMapping("/addShopArticle")
+	@PostMapping("/addShopArticle")
 	@ResponseBody
 	public ServerResponse<?> addShopArticle(@RequestBody ShopArticle shopArticle) {
 		return shopArticleService.addShopArticle(shopArticle);
@@ -62,7 +63,7 @@ public class ShopArticleController {
 	 * @param shopArticle
 	 * @return
 	 */
-	@GetMapping("/updateShopArticle")
+	@PostMapping("/updateShopArticle")
 	@ResponseBody
 	public ServerResponse<?> updateShopArticle(@RequestBody ShopArticle shopArticle) {
 		return shopArticleService.updateShopArticle(shopArticle);
@@ -74,7 +75,7 @@ public class ShopArticleController {
 	 * @param articleId
 	 * @return
 	 */
-	@GetMapping("/deleteShopArticle")
+	@PostMapping("/deleteShopArticle")
 	@ResponseBody
 	public ServerResponse<?> deleteShopArticle(Integer articleId) {
 		return shopArticleService.deleteShopArticle(articleId);

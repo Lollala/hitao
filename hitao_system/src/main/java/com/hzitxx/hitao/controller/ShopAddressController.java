@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 /**
@@ -49,7 +50,7 @@ public class ShopAddressController {
 	 * @param shopAddress
 	 * @return
 	 */
-	@GetMapping("/addShopAddress")
+	@PostMapping("/addShopAddress")
 	@ResponseBody
 	public ServerResponse<?> addShopAddress(@RequestBody ShopAddress shopAddress) {
 		return shopAddressService.addShopAddress(shopAddress);
@@ -61,7 +62,7 @@ public class ShopAddressController {
 	 * @param shopAddress
 	 * @return
 	 */
-	@GetMapping("/updateShopAddress")
+	@PostMapping("/updateShopAddress")
 	@ResponseBody
 	public ServerResponse<?> updateShopAddress(@RequestBody ShopAddress shopAddress) {
 		return shopAddressService.updateShopAddress(shopAddress);
@@ -73,7 +74,7 @@ public class ShopAddressController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/deleteShopAddress")
+	@PostMapping("/deleteShopAddress")
 	@ResponseBody
 	public ServerResponse<?> deleteShopAddress(Integer id) {
 		return shopAddressService.deleteShopAddress(id);
